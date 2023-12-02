@@ -3,7 +3,7 @@
     <string name="app_name">CineWorld Digital</string>
     <string name="nav_home">Home</string>
     <string name="nav_search">Movies</string>
-    <string name="nav_cinema">Cinemas</string>
+    <string name="nav_setting">Settings</string>
 
     <!-- Main Activity -->
     <string name="text_subhead_main">Get the Best Theatrical Experience</string>
