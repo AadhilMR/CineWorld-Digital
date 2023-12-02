@@ -1,5 +1,6 @@
 package com.aadhil.cineworlddigital;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -32,8 +33,20 @@ public class Login extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
 
-        Button button = fragment.findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button button1 = fragment.findViewById(R.id.button);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /**
+                 * TEMP: Temporarily added for check designs
+                 */
+                Intent intent = new Intent(fragment.getContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button button2 = fragment.findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MainActivity mainActivity = (MainActivity) getActivity();

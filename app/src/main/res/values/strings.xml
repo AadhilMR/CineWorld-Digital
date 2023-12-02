@@ -1,5 +1,9 @@
 <resources>
+    <!-- GLOBAL -->
     <string name="app_name">CineWorld Digital</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Movies</string>
+    <string name="nav_cinema">Cinemas</string>
 
     <!-- Main Activity -->
     <string name="text_subhead_main">Get the Best Theatrical Experience</string>
@@ -13,6 +17,6 @@
     <string name="text_login_redirector_main">Already have an account? Login now!</string>
     <string name="text_register_redirector_main">Don\'t have an account? Register now!</string>
 
-    <!-- GLOBAL -->
+    <!-- Home Activity -->
 
 </resources>
