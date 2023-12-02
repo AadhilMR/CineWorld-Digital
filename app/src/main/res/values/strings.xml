@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CineWorld Digital</string>
+
+    <!-- Main Activity -->
+    <string name="text_subhead_main">Get the Best Theatrical Experience</string>
+    <string name="text_copyright_main">Powered By EclipseLK</string>
+    <string name="text_fname_main">First Name</string>
+    <string name="text_lname_main">Last Name</string>
+    <string name="text_mobile_main">Mobile</string>
+    <string name="text_password_main">Password</string>
+    <string name="text_login_main">Login</string>
+    <string name="text_register_main">Register</string>
+    <string name="text_login_redirector_main">Already have an account? Login now!</string>
+    <string name="text_register_redirector_main">Don\'t have an account? Register now!</string>
+
+    <!-- GLOBAL -->
+
+</resources>
