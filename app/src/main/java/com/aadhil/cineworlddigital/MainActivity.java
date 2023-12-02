@@ -28,9 +28,14 @@ public class MainActivity extends AppCompatActivity {
             fragmentClass = Register.class;
         }
         FragmentContainerView containerView = findViewById(R.id.fragmentContainerView);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.fragmentContainerView, fragmentClass, null)
-                .commit();
+
+        try {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fragmentContainerView, fragmentClass, null)
+                    .commit();
+        } catch (NullPointerException ex) {
+            ex.printStackTrace();
+        }
     }
 }
