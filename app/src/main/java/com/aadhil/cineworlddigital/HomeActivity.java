@@ -1,24 +1,26 @@
 package com.aadhil.cineworlddigital;
 
 import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.os.Handler;
 
 import com.aadhil.cineworlddigital.adapter.CurrentMovieAdapter;
+import com.aadhil.cineworlddigital.adapter.SliderImageAdapter;
 import com.aadhil.cineworlddigital.adapter.UpcomingMovieAdapter;
 import com.aadhil.cineworlddigital.model.CurrentMovie;
+import com.aadhil.cineworlddigital.model.SliderImage;
 import com.aadhil.cineworlddigital.model.UpcomingMovie;
 
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
+    private int currentPage = 0;
+    private final Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,9 @@ public class HomeActivity extends AppCompatActivity {
         // Set Bottom Navigation
         BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView2);
 
+        // Set Image Slider
+        setupImageSlider();
+
         // TEMP: Fake ArrayList to pass to the adapters
         ArrayList<CurrentMovie> datalist1 = new ArrayList<>();
         ArrayList<UpcomingMovie> datalist2 = new ArrayList<>();
@@ -42,6 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         // Set upcoming movies to recycler
         setMoviesToRecyclerView(R.id.recyclerView2)
                 .setAdapter(new UpcomingMovieAdapter(HomeActivity.this, datalist2).getAdapter());
+
     }
 
     private RecyclerView setMoviesToRecyclerView(@IdRes int resId) {
@@ -50,5 +56,29 @@ public class HomeActivity extends AppCompatActivity {
                 LinearLayoutManager.HORIZONTAL, false));
 
         return recyclerView;
+    }
+
+    private void setupImageSlider() {
+        ArrayList<SliderImage> images = new ArrayList<>();
+        images.add(new SliderImage(R.drawable.ic_home));
+        images.add(new SliderImage(R.drawable.ic_menu));
+        images.add(new SliderImage(R.drawable.ic_logout));
+
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        SliderImageAdapter imageAdapter = new SliderImageAdapter(this, images);
+        viewPager.setAdapter(imageAdapter);
+
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if(currentPage == images.size()) {
+                    currentPage = 0;
+                }
+                viewPager.setCurrentItem(currentPage++, true);
+                handler.postDelayed(this, 8000);
+            }
+        };
+
+        handler.postDelayed(runnable, 8000);
     }
 }

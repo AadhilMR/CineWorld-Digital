@@ -1,9 +1,9 @@
 package com.aadhil.cineworlddigital.model;
 
 public class UpcomingMovie {
-    int id;
-    String movieName;
-    String releaseDate;
+    private int id;
+    private String movieName;
+    private String releaseDate;
 
     public UpcomingMovie() {}
 

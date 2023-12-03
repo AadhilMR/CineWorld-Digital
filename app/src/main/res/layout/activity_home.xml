@@ -48,12 +48,11 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp">
 
-                <ImageView
-                    android:id="@+id/imageView"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:contentDescription="Slider Images"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                    android:contentDescription="Image Slider" />
 
                 <Space
                     android:layout_width="match_parent"

@@ -14,8 +14,8 @@ import com.aadhil.cineworlddigital.model.CurrentMovie;
 import java.util.ArrayList;
 
 public class CurrentMovieAdapter {
-    AppCompatActivity activity;
-    ArrayList<CurrentMovie> datalist;
+    final private AppCompatActivity activity;
+    final private ArrayList<CurrentMovie> datalist;
 
     public CurrentMovieAdapter(AppCompatActivity activity, ArrayList<CurrentMovie> datalist) {
         this.activity = activity;
@@ -27,7 +27,7 @@ public class CurrentMovieAdapter {
     }
 
     private RecyclerView.Adapter createAdapter() {
-        RecyclerView.Adapter adapter = new RecyclerView.Adapter<CurrentMovieViewHolder>() {
+        return new RecyclerView.Adapter<CurrentMovieViewHolder>() {
             @NonNull
             @Override
             public CurrentMovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,7 +49,5 @@ public class CurrentMovieAdapter {
                 return datalist.size();
             }
         };
-
-        return adapter;
     }
 }

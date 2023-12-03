@@ -14,8 +14,8 @@ import com.aadhil.cineworlddigital.model.UpcomingMovie;
 import java.util.ArrayList;
 
 public class UpcomingMovieAdapter {
-    AppCompatActivity activity;
-    ArrayList<UpcomingMovie> datalist;
+    private AppCompatActivity activity;
+    private ArrayList<UpcomingMovie> datalist;
 
     public UpcomingMovieAdapter(AppCompatActivity activity, ArrayList<UpcomingMovie> datalist) {
         this.activity = activity;

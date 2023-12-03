@@ -1,10 +1,10 @@
 package com.aadhil.cineworlddigital.model;
 
 public class CurrentMovie {
-    int id;
-    String movieName;
-    String duration;
-    String language;
+    private int id;
+    private String movieName;
+    private String duration;
+    private String language;
 
     public CurrentMovie() {}
 
