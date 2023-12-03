@@ -11,6 +11,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        AppBar.setAppBar(getSupportFragmentManager(), R.id.fragmentContainerView3);
         BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView2);
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/searchMovie"
+        android:icon="@drawable/ic_search"
+        android:title="Search Movie" />
+    <item
+        android:id="@+id/buyTickets"
+        android:icon="@drawable/ic_ticket"
+        android:title="Buy Tickets" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings"
+        android:title="Settings" />
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_logout"
+        android:title="Logout" />
+</menu>
