@@ -18,5 +18,11 @@
     <string name="text_register_redirector_main">Don\'t have an account? Register now!</string>
 
     <!-- Home Activity -->
+    <string name="now_showing">Now showing at CineWorld...</string>
+    <string name="coming_soon">Coming soon on CineWorld screens...</string>
+    <string name="movie_name">Movie Name</string>
+    <string name="running_time">Running Time</string>
+    <string name="movie_language">Language</string>
+    <string name="release_date">Release on dd/mm/yy</string>
 
 </resources>
