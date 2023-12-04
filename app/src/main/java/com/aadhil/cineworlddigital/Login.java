@@ -39,7 +39,7 @@ public class Login extends Fragment {
                 /**
                  * TEMP: Temporarily added for check designs
                  */
-                Intent intent = new Intent(fragment.getContext(), SearchActivity.class);
+                Intent intent = new Intent(fragment.getContext(), SingleMovieActivity.class);
                 startActivity(intent);
             }
         });

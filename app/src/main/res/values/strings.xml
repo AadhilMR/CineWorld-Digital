@@ -1,6 +1,9 @@
 <resources>
     <!-- GLOBAL -->
     <string name="app_name">CineWorld Digital</string>
+    <string name="cinema_name">CineWorld</string>
+    <string name="dolby_desc">Dolby Surround 7.1</string>
+    <string name="projector_desc">4K Digital Projection</string>
     <string name="nav_home">Home</string>
     <string name="nav_search">Movies</string>
     <string name="nav_setting">Settings</string>
@@ -31,5 +34,11 @@
     <string name="edittext_date">Select Date</string>
     <string name="text_search_result">Search Result:</string>
     <string name="search_results">0</string>
+
+    <!-- Single Movie Activity -->
+    <string name="released_on">Released On:</string>
+    <string name="book_now">Book My Seat</string>
+    <!-- TEMP: remove this -->
+    <string name="desc">I am Aadhil Ahamed. I am 22 age years old. My favourite programming language is Java.</string>
 
 </resources>

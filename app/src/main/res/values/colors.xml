@@ -8,4 +8,6 @@
     <color name="default_red">#BE0606</color>
     <color name="light_blue">#6BA6FF</color>
     <color name="light_yellow">#FFD977</color>
+    <color name="light_red">#8F6A6A</color>
+    <color name="dark_red">#910808</color>
 </resources>
