@@ -1,7 +1,13 @@
 package com.aadhil.cineworlddigital;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.MenuRes;
@@ -9,16 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.PopupMenu;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,40 +51,6 @@ public class AppBar extends Fragment {
         });
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
-//        map = new HashMap<>();
-//
-//        map.put(R.id.searchMovie, () -> {
-//            System.out.println("Search Movie");
-//        });
-//
-//        map.put(R.id.buyTickets, () -> {
-//            System.out.println("Buy Tickets");
-//        });
-//
-//        map.put(R.id.settings, () -> {
-//            System.out.println("Settings");
-//        });
-//
-//        map.put(R.id.logout, () -> {
-//            System.out.println("Logout");
-//        });
-//
-//        inflater.inflate(R.menu.main_menu, menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        try {
-//            map.get(item.getItemId());
-//            return true;
-//        } catch (Exception ex) {
-//            return super.onOptionsItemSelected(item);
-//        }
-//    }
-
     /**
      * createMenu() method creates a PopupMenu object from given menu as
      * a menu resource.
@@ -99,7 +61,7 @@ public class AppBar extends Fragment {
      *
      * By default, this method creates the menu with End Gravity
      */
-    private PopupMenu createMenu(@NonNull View fragment,@NonNull @MenuRes int menuRes) {
+    private PopupMenu createMenu(@NonNull View fragment,@MenuRes int menuRes) {
         PopupMenu menu = new PopupMenu(getContext(), fragment, Gravity.END);
         menu.inflate(menuRes);
         return menu;
@@ -158,7 +120,7 @@ public class AppBar extends Fragment {
      * @param containerViewId denotes fragment container resource id
      */
     public static void setAppBar(@NonNull FragmentManager fragmentManager,
-                                        @NonNull @IdRes int containerViewId) {
+                                        @IdRes int containerViewId) {
         fragmentManager
                 .beginTransaction()
                 .add(containerViewId, AppBar.class, null)

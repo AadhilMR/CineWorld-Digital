@@ -2,17 +2,16 @@ package com.aadhil.cineworlddigital;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 public class BottomNavigation extends Fragment {
     private static final String ACTIVITY_HOME = "com.aadhil.cineworlddigital.HomeActivity";
@@ -55,8 +54,8 @@ public class BottomNavigation extends Fragment {
             @Override
             public void onClick(View view) {
                 if(!getActivity().getClass().getName().equals(BottomNavigation.ACTIVITY_SEARCH)) {
-                    // Intent intent = new Intent(fragment.getContext(), );
-                    // startActivity(intent);
+                    Intent intent = new Intent(fragment.getContext(), SearchActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -81,7 +80,7 @@ public class BottomNavigation extends Fragment {
      * @param containerViewId denotes fragment container resource id
      */
     public static void setNavigationBar(@NonNull FragmentManager fragmentManager,
-                                 @NonNull @IdRes int containerViewId) {
+                                 @IdRes int containerViewId) {
         fragmentManager
                 .beginTransaction()
                 .add(containerViewId, BottomNavigation.class, null)

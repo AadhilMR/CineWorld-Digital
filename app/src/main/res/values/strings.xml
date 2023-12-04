@@ -18,11 +18,18 @@
     <string name="text_register_redirector_main">Don\'t have an account? Register now!</string>
 
     <!-- Home Activity -->
-    <string name="now_showing">Now showing at CineWorld...</string>
-    <string name="coming_soon">Coming soon on CineWorld screens...</string>
+    <string name="now_showing">Now showing at CineWorld&#8230;</string>
+    <string name="coming_soon">Coming soon on CineWorld screens&#8230;</string>
     <string name="movie_name">Movie Name</string>
     <string name="running_time">Running Time</string>
     <string name="movie_language">Language</string>
     <string name="release_date">Release on dd/mm/yy</string>
+
+    <!-- Search Activity -->
+    <string name="edittext_search">Search Here&#8230;</string>
+    <string name="edittext_showtime">Select Show Time</string>
+    <string name="edittext_date">Select Date</string>
+    <string name="text_search_result">Search Result:</string>
+    <string name="search_results">0</string>
 
 </resources>
