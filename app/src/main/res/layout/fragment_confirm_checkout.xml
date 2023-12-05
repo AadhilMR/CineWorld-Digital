@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_background"
+    android:orientation="vertical"
+    tools:context=".fragment.ConfirmCheckout">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView41"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/khand"
+                android:text="@string/text_confirm_seat"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/khand"
+                android:text="@string/movie_details"
+                android:textColor="@color/primary_theme"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView42"
+                        android:layout_width="110dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/movie_name"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView46"
+                        android:layout_width="230dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="Selected Movie Name"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView47"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/show_time"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView48"
+                        android:layout_width="230dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="Tue, 05 Dec at 7.00PM"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+                </TableRow>
+
+            </TableLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView49"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/khand"
+                android:text="@string/user_details"
+                android:textColor="@color/primary_theme"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView50"
+                        android:layout_width="110dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/mobile"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView51"
+                        android:layout_width="230dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="+94772635198"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView52"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/email"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView53"
+                        android:layout_width="230dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="N/A"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+                </TableRow>
+
+            </TableLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView54"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/khand"
+                android:text="@string/user_details"
+                android:textColor="@color/primary_theme"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView55"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="4dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/ticket_count"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView56"
+                        android:layout_width="225dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="2"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView57"
+                        android:layout_width="112dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/seats"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView58"
+                        android:layout_width="225dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="F3, F4"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView59"
+                        android:layout_width="98dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/sub_total"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView60"
+                        android:layout_width="225dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="2 x (LKR 1200) = LKR 2400"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView61"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/total"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView62"
+                        android:layout_width="225dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custom_table_text_total"
+                        android:fontFamily="@font/khand"
+                        android:paddingStart="8dp"
+                        android:paddingTop="7dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="7dp"
+                        android:text="LKR 2400"
+                        android:textColor="@color/primary_foreground"
+                        android:textSize="20sp" />
+                </TableRow>
+
+            </TableLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/primary_theme"
+                android:checked="false"
+                android:fontFamily="@font/khand"
+                android:text="@string/aggr_text_1"
+                android:textColor="@color/primary_foreground"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/primary_theme"
+                android:checked="false"
+                android:fontFamily="@font/khand"
+                android:text="@string/aggr_text_2"
+                android:textColor="@color/primary_foreground"
+                android:textSize="15sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="@color/transparent"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:text="@string/button_previous"
+                    android:textColor="@color/primary_foreground"
+                    android:textSize="20sp"
+                    app:cornerRadius="4dp"
+                    app:layout_constraintEnd_toStartOf="@+id/button19"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/primary_theme"
+                    app:strokeWidth="1.5dp" />
+
+                <Button
+                    android:id="@+id/button19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/primary_theme"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    android:text="@string/button_card_payment"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:cornerRadius="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

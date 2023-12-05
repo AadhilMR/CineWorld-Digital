@@ -1,10 +1,11 @@
 package com.aadhil.cineworlddigital;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentContainerView;
-
 import android.os.Bundle;
-import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.aadhil.cineworlddigital.fragment.Login;
+import com.aadhil.cineworlddigital.fragment.Register;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         } else if(fragmentType == MainActivity.REGISTER_FRAGMENT) {
             fragmentClass = Register.class;
         }
-        FragmentContainerView containerView = findViewById(R.id.fragmentContainerView);
 
         try {
             getSupportFragmentManager()

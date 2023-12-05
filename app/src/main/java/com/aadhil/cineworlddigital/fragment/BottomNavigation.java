@@ -1,4 +1,4 @@
-package com.aadhil.cineworlddigital;
+package com.aadhil.cineworlddigital.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.aadhil.cineworlddigital.HomeActivity;
+import com.aadhil.cineworlddigital.R;
+import com.aadhil.cineworlddigital.SearchActivity;
 
 public class BottomNavigation extends Fragment {
     private static final String ACTIVITY_HOME = "com.aadhil.cineworlddigital.HomeActivity";

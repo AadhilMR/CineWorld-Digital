@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_background"
+    android:orientation="vertical"
+    tools:context=".fragment.SelectMovie">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/khand"
+                android:text="@string/text_pick_movie"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/khand"
+                android:text="@string/text_select_date"
+                android:textColor="@color/primary_theme"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/button11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/transparent"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/text_today"
+                    android:textColor="@color/primary_foreground"
+                    android:textSize="16sp"
+                    app:cornerRadius="3dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/primary_foreground"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:id="@+id/button12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/transparent"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Tue, 05 Dec"
+                    android:textColor="@color/primary_foreground"
+                    android:textSize="16sp"
+                    app:cornerRadius="3dp"
+                    app:layout_constraintStart_toEndOf="@+id/button11"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/primary_foreground"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:id="@+id/button13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/transparent"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Tue, 06 Dec"
+                    android:textColor="@color/primary_foreground"
+                    android:textSize="16sp"
+                    app:cornerRadius="3dp"
+                    app:layout_constraintStart_toEndOf="@+id/button12"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/primary_foreground"
+                    app:strokeWidth="1dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/khand"
+                android:text="@string/text_select_movie"
+                android:textColor="@color/primary_theme"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/khand"
+                android:text="@string/text_select_showtime"
+                android:textColor="@color/primary_theme"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/button14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/transparent"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="10.30AM"
+                    android:textColor="@color/primary_foreground"
+                    android:textSize="16sp"
+                    app:cornerRadius="3dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/primary_foreground"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:id="@+id/button15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/transparent"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="10.30AM"
+                    android:textColor="@color/primary_foreground"
+                    android:textSize="16sp"
+                    app:cornerRadius="3dp"
+                    app:layout_constraintStart_toEndOf="@+id/button14"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/primary_foreground"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:id="@+id/button16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/transparent"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="10.30AM"
+                    android:textColor="@color/primary_foreground"
+                    android:textSize="16sp"
+                    app:cornerRadius="3dp"
+                    app:layout_constraintStart_toEndOf="@+id/button15"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/primary_foreground"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:id="@+id/button17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/transparent"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="10.30AM"
+                    android:textColor="@color/primary_foreground"
+                    android:textSize="16sp"
+                    app:cornerRadius="3dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button14"
+                    app:strokeColor="@color/primary_foreground"
+                    app:strokeWidth="1dp" />
+
+                <Button
+                    android:id="@+id/button18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/transparent"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="10.30AM"
+                    android:textColor="@color/primary_foreground"
+                    android:textSize="16sp"
+                    app:cornerRadius="3dp"
+                    app:layout_constraintStart_toEndOf="@+id/button17"
+                    app:layout_constraintTop_toBottomOf="@+id/button15"
+                    app:strokeColor="@color/primary_foreground"
+                    app:strokeWidth="1dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/button20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="@color/transparent"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:text="@string/button_cancel"
+                    android:textColor="@color/primary_foreground"
+                    android:textSize="20sp"
+                    app:cornerRadius="4dp"
+                    app:layout_constraintEnd_toStartOf="@+id/button19"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/default_red"
+                    app:strokeWidth="1.5dp" />
+
+                <Button
+                    android:id="@+id/button19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/primary_theme"
+                    android:fontFamily="@font/khand"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:text="@string/button_next"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:cornerRadius="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

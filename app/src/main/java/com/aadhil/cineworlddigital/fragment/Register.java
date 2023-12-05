@@ -1,4 +1,4 @@
-package com.aadhil.cineworlddigital;
+package com.aadhil.cineworlddigital.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.aadhil.cineworlddigital.MainActivity;
+import com.aadhil.cineworlddigital.R;
 
 public class Register extends Fragment {
     public Register() {

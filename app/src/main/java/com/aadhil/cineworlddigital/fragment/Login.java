@@ -1,4 +1,4 @@
-package com.aadhil.cineworlddigital;
+package com.aadhil.cineworlddigital.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,10 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.aadhil.cineworlddigital.CheckoutActivity;
+import com.aadhil.cineworlddigital.MainActivity;
+import com.aadhil.cineworlddigital.R;
 
 public class Login extends Fragment {
     public Login() {
@@ -39,7 +43,7 @@ public class Login extends Fragment {
                 /**
                  * TEMP: Temporarily added for check designs
                  */
-                Intent intent = new Intent(fragment.getContext(), SingleMovieActivity.class);
+                Intent intent = new Intent(fragment.getContext(), CheckoutActivity.class);
                 startActivity(intent);
             }
         });

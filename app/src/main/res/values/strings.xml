@@ -7,6 +7,8 @@
     <string name="nav_home">Home</string>
     <string name="nav_search">Movies</string>
     <string name="nav_setting">Settings</string>
+    <string name="mobile">Mobile</string>
+    <string name="email">Email</string>
 
     <!-- Main Activity -->
     <string name="text_subhead_main">Get the Best Theatrical Experience</string>
@@ -40,5 +42,32 @@
     <string name="book_now">Book My Seat</string>
     <!-- TEMP: remove this -->
     <string name="desc">I am Aadhil Ahamed. I am 22 age years old. My favourite programming language is Java.</string>
+
+    <!-- Checkout Activity -->
+    <string name="text_pick_movie">Pick a movie&#8230;</string>
+    <string name="text_pick_seat">Pick a Seat&#8230;</string>
+    <string name="text_confirm_seat">Confirm your seat&#8230;</string>
+    <string name="text_select_date">Select a Date</string>
+    <string name="text_select_movie">Select a Movie</string>
+    <string name="text_select_showtime">Select a Show Time</string>
+    <string name="text_today">Today</string>
+    <string name="text_screen">Screen</string>
+    <string name="option_available">Available</string>
+    <string name="option_reserved">Reserved</string>
+    <string name="option_selected">Selected</string>
+    <string name="movie_details">Movie Details</string>
+    <string name="user_details">Your Details</string>
+    <string name="ticket_details">Ticket Details</string>
+    <string name="show_time">Show Time</string>
+    <string name="ticket_count">Num of Tickets</string>
+    <string name="seats">Seats</string>
+    <string name="sub_total">Sub-total</string>
+    <string name="total">Total</string>
+    <string name="aggr_text_1">I know that tickets once sold are not exchangeable, transferred nor refundable.</string>
+    <string name="aggr_text_2">I have read and agree to the app terms and conditions.</string>
+    <string name="button_next">Next</string>
+    <string name="button_previous">Previous</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_card_payment">Card Payment</string>
 
 </resources>

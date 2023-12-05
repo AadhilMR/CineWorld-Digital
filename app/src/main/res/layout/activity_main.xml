@@ -58,7 +58,7 @@
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView"
-                android:name="com.aadhil.cineworlddigital.Login"
+                android:name="com.aadhil.cineworlddigital.fragment.Login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>

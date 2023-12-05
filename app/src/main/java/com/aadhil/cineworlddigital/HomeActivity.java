@@ -1,17 +1,19 @@
 package com.aadhil.cineworlddigital;
 
+import android.os.Bundle;
+import android.os.Handler;
+
 import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
-import android.os.Handler;
-
 import com.aadhil.cineworlddigital.adapter.CurrentMovieAdapter;
 import com.aadhil.cineworlddigital.adapter.SliderImageAdapter;
 import com.aadhil.cineworlddigital.adapter.UpcomingMovieAdapter;
+import com.aadhil.cineworlddigital.fragment.AppBar;
+import com.aadhil.cineworlddigital.fragment.BottomNavigation;
 import com.aadhil.cineworlddigital.model.CurrentMovie;
 import com.aadhil.cineworlddigital.model.SliderImage;
 import com.aadhil.cineworlddigital.model.UpcomingMovie;

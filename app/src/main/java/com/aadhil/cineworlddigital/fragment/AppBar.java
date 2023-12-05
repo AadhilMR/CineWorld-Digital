@@ -1,4 +1,4 @@
-package com.aadhil.cineworlddigital;
+package com.aadhil.cineworlddigital.fragment;
 
 import android.os.Bundle;
 import android.view.Gravity;
@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.aadhil.cineworlddigital.R;
 
 import java.util.HashMap;
 import java.util.Map;

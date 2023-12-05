@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aadhil.cineworlddigital.adapter.CurrentMovieAdapter;
+import com.aadhil.cineworlddigital.fragment.AppBar;
+import com.aadhil.cineworlddigital.fragment.BottomNavigation;
 import com.aadhil.cineworlddigital.model.CurrentMovie;
 
 import java.util.ArrayList;

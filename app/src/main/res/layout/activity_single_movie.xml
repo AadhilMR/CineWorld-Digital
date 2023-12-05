@@ -9,7 +9,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView6"
-        android:name="com.aadhil.cineworlddigital.AppBar"
+        android:name="com.aadhil.cineworlddigital.fragment.AppBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView7"
-        android:name="com.aadhil.cineworlddigital.BottomNavigation"
+        android:name="com.aadhil.cineworlddigital.fragment.BottomNavigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
