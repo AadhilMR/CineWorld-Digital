@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.aadhil.cineworlddigital.CheckoutActivity;
+import com.aadhil.cineworlddigital.FindUsActivity;
 import com.aadhil.cineworlddigital.MainActivity;
 import com.aadhil.cineworlddigital.R;
 
@@ -43,7 +43,7 @@ public class Login extends Fragment {
                 /**
                  * TEMP: Temporarily added for check designs
                  */
-                Intent intent = new Intent(fragment.getContext(), CheckoutActivity.class);
+                Intent intent = new Intent(fragment.getContext(), FindUsActivity.class);
                 startActivity(intent);
             }
         });

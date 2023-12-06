@@ -96,17 +96,17 @@ public class SettingsHome extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(buttonView.isChecked()) {
-                    switch1.setThumbTintList(ContextCompat
+                    switch2.setThumbTintList(ContextCompat
                             .getColorStateList(getContext(), R.color.primary_theme));
-                    switch1.setTrackTintList(ContextCompat
+                    switch2.setTrackTintList(ContextCompat
                             .getColorStateList(getContext(), R.color.light_yellow));
-                    switch1.setText("Fingerprint Authentication is ON");
+                    switch2.setText("Fingerprint Authentication is ON");
                 } else {
-                    switch1.setThumbTintList(ContextCompat
+                    switch2.setThumbTintList(ContextCompat
                             .getColorStateList(getContext(), R.color.primary_background));
-                    switch1.setTrackTintList(ContextCompat
+                    switch2.setTrackTintList(ContextCompat
                             .getColorStateList(getContext(), R.color.light_ash));
-                    switch1.setText("Fingerprint Authentication is OFF");
+                    switch2.setText("Fingerprint Authentication is OFF");
                 }
             }
         });

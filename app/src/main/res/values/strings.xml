@@ -91,4 +91,10 @@
     <string name="subtitle_new_password">New Password</string>
     <string name="button_save">Save</string>
 
+    <!-- Find Us Activity -->
+    <string name="theatre_name">Cine World Theatre</string>
+    <string name="theatre_contact">Contact</string>
+    <string name="theatre_email">Email</string>
+    <string name="theatre_address">Address</string>
+
 </resources>
