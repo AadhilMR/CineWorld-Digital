@@ -3,17 +3,22 @@
     <item
         android:id="@+id/searchMovie"
         android:icon="@drawable/ic_search"
-        android:title="Search Movie" />
+        android:title="@string/nav_search_movie" />
     <item
         android:id="@+id/buyTickets"
         android:icon="@drawable/ic_ticket"
-        android:title="Buy Tickets" />
+        android:title="@string/nav_search_buy_tickets" />
     <item
         android:id="@+id/settings"
         android:icon="@drawable/ic_settings"
-        android:title="Settings" />
+        android:title="@string/nav_setting" />
+    <item
+        android:id="@+id/findUs"
+        android:icon="@drawable/ic_find_us"
+        android:iconTint="@color/primary_foreground"
+        android:title="@string/nav_find_us" />
     <item
         android:id="@+id/logout"
         android:icon="@drawable/ic_logout"
-        android:title="Logout" />
+        android:title="@string/nav_logout" />
 </menu>

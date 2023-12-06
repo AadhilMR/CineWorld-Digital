@@ -94,6 +94,10 @@ public class AppBar extends Fragment {
             System.out.println("Logout");
         });
 
+        map.put(R.id.findUs, () -> {
+            System.out.println("Find Us");
+        });
+
         menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

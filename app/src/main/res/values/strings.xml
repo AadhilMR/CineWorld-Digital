@@ -7,8 +7,12 @@
     <string name="nav_home">Home</string>
     <string name="nav_search">Movies</string>
     <string name="nav_setting">Settings</string>
-    <string name="mobile">Mobile</string>
+    <string name="nav_search_movie">Search Movie</string>
+    <string name="nav_search_buy_tickets">Buy Tickets</string>
+    <string name="nav_find_us">Find Us</string>
+    <string name="nav_logout">Logout</string>
     <string name="email">Email</string>
+    <string name="mobile">Mobile</string>
 
     <!-- Main Activity -->
     <string name="text_subhead_main">Get the Best Theatrical Experience</string>
@@ -69,5 +73,22 @@
     <string name="button_previous">Previous</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_card_payment">Card Payment</string>
+
+    <!-- Settings Activity -->
+    <string name="title_user_info">User Information</string>
+    <string name="title_card_info">Card Details</string>
+    <string name="title_authentication">User Authentication</string>
+    <string name="subtitle_fname">First Name</string>
+    <string name="subtitle_lname">Last Name</string>
+    <string name="subtitle_mobile">Mobile</string>
+    <string name="subtitle_email">Email</string>
+    <string name="subtitle_change_credentials">Change User Info</string>
+    <string name="subtitle_save_card">Save Card Details</string>
+    <string name="subtitle_view_card">View Card Details</string>
+    <string name="subtitle_use_fingerprint">Use FingerPrint Authentication</string>
+    <string name="subtitle_change_password">Change Password</string>
+    <string name="subtitle_current_password">Current Password</string>
+    <string name="subtitle_new_password">New Password</string>
+    <string name="button_save">Save</string>
 
 </resources>

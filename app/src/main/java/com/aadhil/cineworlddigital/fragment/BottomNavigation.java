@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import com.aadhil.cineworlddigital.HomeActivity;
 import com.aadhil.cineworlddigital.R;
 import com.aadhil.cineworlddigital.SearchActivity;
+import com.aadhil.cineworlddigital.SettingsActivity;
 
 public class BottomNavigation extends Fragment {
     private static final String ACTIVITY_HOME = "com.aadhil.cineworlddigital.HomeActivity";
@@ -69,8 +70,8 @@ public class BottomNavigation extends Fragment {
             @Override
             public void onClick(View view) {
                 if(!getActivity().getClass().getName().equals(BottomNavigation.ACTIVITY_SETTINGS)) {
-                    // Intent intent = new Intent(fragment.getContext(), );
-                    // startActivity(intent);
+                    Intent intent = new Intent(fragment.getContext(), SettingsActivity.class);
+                    startActivity(intent);
                 }
             }
         });
