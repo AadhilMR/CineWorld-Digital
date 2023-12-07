@@ -11,9 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.aadhil.cineworlddigital.FindUsActivity;
+import com.aadhil.cineworlddigital.HomeActivity;
 import com.aadhil.cineworlddigital.MainActivity;
 import com.aadhil.cineworlddigital.R;
+import com.aadhil.cineworlddigital.service.ActivityNavigator;
 
 public class Login extends Fragment {
     public Login() {
@@ -36,6 +37,11 @@ public class Login extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
 
+        // Get activity navigator
+        ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(),
+                getActivity().findViewById(R.id.parentLayoutMain));
+
+        // Check user validity and login
         Button button1 = fragment.findViewById(R.id.button);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,17 +49,28 @@ public class Login extends Fragment {
                 /**
                  * TEMP: Temporarily added for check designs
                  */
-                Intent intent = new Intent(fragment.getContext(), FindUsActivity.class);
-                startActivity(intent);
+                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                    @Override
+                    public void redirect() {
+                        Intent intent = new Intent(fragment.getContext(), HomeActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
 
+        // Change the view to registration
         Button button2 = fragment.findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity mainActivity = (MainActivity) getActivity();
-                mainActivity.setFragment(MainActivity.REGISTER_FRAGMENT);
+                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                    @Override
+                    public void redirect() {
+                        MainActivity mainActivity = (MainActivity) getActivity();
+                        mainActivity.setFragment(MainActivity.REGISTER_FRAGMENT);
+                    }
+                });
             }
         });
     }

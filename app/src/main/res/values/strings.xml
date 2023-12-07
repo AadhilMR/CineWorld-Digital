@@ -97,4 +97,17 @@
     <string name="theatre_email">Email</string>
     <string name="theatre_address">Address</string>
 
+    <!-- Payment Activity -->
+    <string name="card_details">Enter Card Details</string>
+    <string name="name_on_card">Name on Card</string>
+    <string name="card_number">Card Number</string>
+    <string name="cvv_code">CVV</string>
+    <string name="expire_date">Expire Date</string>
+    <string name="slash">/</string>
+    <string name="save_card">Save My Card Details</string>
+    <string name="get_card">Use Saved Card</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="payment_verified">Your Payment is Verified</string>
+    <string name="print_invoice">Get Ticket</string>
+
 </resources>

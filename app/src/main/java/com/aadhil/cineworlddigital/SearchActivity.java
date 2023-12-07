@@ -27,10 +27,12 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         // Set App Bar
-        AppBar.setAppBar(getSupportFragmentManager(), R.id.fragmentContainerView4);
+        AppBar.setAppBar(getSupportFragmentManager(), R.id.fragmentContainerView4,
+                findViewById(R.id.parentLayoutSearch));
 
         // Set Bottom Navigation
-        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView5);
+        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView5,
+                findViewById(R.id.parentLayoutSearch));
 
         // Load Spinners
         loadShowTimes();

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aadhil.cineworlddigital.fragment.AppBar;
+import com.aadhil.cineworlddigital.fragment.BottomNavigation;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -19,6 +21,14 @@ public class FindUsActivity extends AppCompatActivity implements OnMapReadyCallb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_us);
+
+        // Set App Bar
+        AppBar.setAppBar(getSupportFragmentManager(), R.id.fragmentContainerView13,
+                findViewById(R.id.parentLayoutFindus));
+
+        // Set Bottom Navigation
+        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView15,
+                findViewById(R.id.parentLayoutFindus));
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

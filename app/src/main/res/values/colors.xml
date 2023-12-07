@@ -12,4 +12,5 @@
     <color name="dark_red">#910808</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="light_ash">#A1A1A1</color>
+    <color name="color_success">#059A0B</color>
 </resources>

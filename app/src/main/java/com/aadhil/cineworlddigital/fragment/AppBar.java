@@ -1,5 +1,6 @@
 package com.aadhil.cineworlddigital.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,12 +17,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.aadhil.cineworlddigital.CheckoutActivity;
+import com.aadhil.cineworlddigital.FindUsActivity;
+import com.aadhil.cineworlddigital.MainActivity;
 import com.aadhil.cineworlddigital.R;
+import com.aadhil.cineworlddigital.SearchActivity;
+import com.aadhil.cineworlddigital.SettingsActivity;
+import com.aadhil.cineworlddigital.service.ActivityNavigator;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class AppBar extends Fragment {
+    private static ViewGroup layout;
+    private ActivityNavigator navigator;
 
     public AppBar() {
         // Required empty public constructor
@@ -43,12 +52,32 @@ public class AppBar extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
 
+        // Get activity navigator
+        navigator = ActivityNavigator.getNavigator(getContext(), AppBar.layout);
+
         ImageButton imageButton = fragment.findViewById(R.id.imageButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PopupMenu menu = createMenu(fragment, R.menu.main_menu);
-                setMenuAction(menu).show();
+                setMenuAction(menu, fragment).show();
+            }
+        });
+    }
+
+    /**
+     * setRedirector() method gives the redirection process to
+     * ActivityNavigator object to handle redirections.
+     *
+     * @param activityClass
+     * @param fragment
+     */
+    private void setRedirector(Class activityClass, View fragment) {
+        navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+            @Override
+            public void redirect() {
+                Intent intent = new Intent(fragment.getContext(), activityClass);
+                startActivity(intent);
             }
         });
     }
@@ -75,27 +104,30 @@ public class AppBar extends Fragment {
      * @param menu the menu which is already created as a PopupMenu object
      * @return PopupMenu Object which is modified by this method
      */
-    private PopupMenu setMenuAction(PopupMenu menu) {
+    private PopupMenu setMenuAction(PopupMenu menu, View fragment) {
         Map<Integer, MenuRedirector> map = new HashMap<>();
 
         map.put(R.id.searchMovie, () -> {
-            System.out.println("Search Movie");
+            setRedirector(SearchActivity.class, fragment);
         });
 
         map.put(R.id.buyTickets, () -> {
-            System.out.println("Buy Tickets");
+            setRedirector(CheckoutActivity.class, fragment);
         });
 
         map.put(R.id.settings, () -> {
-            System.out.println("Settings");
+            setRedirector(SettingsActivity.class, fragment);
         });
 
         map.put(R.id.logout, () -> {
-            System.out.println("Logout");
+            /**
+             * TEMP: add logout function here
+             */
+            setRedirector(MainActivity.class, fragment);
         });
 
         map.put(R.id.findUs, () -> {
-            System.out.println("Find Us");
+            setRedirector(FindUsActivity.class, fragment);
         });
 
         menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -126,7 +158,9 @@ public class AppBar extends Fragment {
      * @param containerViewId denotes fragment container resource id
      */
     public static void setAppBar(@NonNull FragmentManager fragmentManager,
-                                        @IdRes int containerViewId) {
+                                        @IdRes int containerViewId, ViewGroup layout) {
+        AppBar.layout = layout;
+
         fragmentManager
                 .beginTransaction()
                 .add(containerViewId, AppBar.class, null)

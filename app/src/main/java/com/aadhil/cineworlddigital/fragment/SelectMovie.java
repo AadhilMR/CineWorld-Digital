@@ -1,5 +1,6 @@
 package com.aadhil.cineworlddigital.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.aadhil.cineworlddigital.CheckoutActivity;
+import com.aadhil.cineworlddigital.HomeActivity;
 import com.aadhil.cineworlddigital.R;
+import com.aadhil.cineworlddigital.service.ActivityNavigator;
 
 public class SelectMovie extends Fragment {
     public SelectMovie() {}
@@ -32,13 +35,38 @@ public class SelectMovie extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
 
+        // Get activity navigator
+        ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(),
+                getActivity().findViewById(R.id.parentLayoutCheckout));
+
+        // Click next to go to select seat
         Button buttonNext = fragment.findViewById(R.id.button19);
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CheckoutActivity activity = (CheckoutActivity) getActivity();
-                activity.getCheckoutFragmentManager()
-                        .setFragment(CheckoutActivity.CheckoutFragmentManager.FRAGMENT_SELECT_SEAT);
+                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                    @Override
+                    public void redirect() {
+                        CheckoutActivity activity = (CheckoutActivity) getActivity();
+                        activity.getCheckoutFragmentManager()
+                                .setFragment(CheckoutActivity.CheckoutFragmentManager.FRAGMENT_SELECT_SEAT);
+                    }
+                });
+            }
+        });
+
+        // Click cancel to go to home
+        Button buttonCancel = fragment.findViewById(R.id.button20);
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                    @Override
+                    public void redirect() {
+                        Intent i = new Intent(getContext(), HomeActivity.class);
+                        startActivity(i);
+                    }
+                });
             }
         });
     }

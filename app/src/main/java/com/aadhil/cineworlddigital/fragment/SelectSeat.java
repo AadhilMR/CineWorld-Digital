@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.aadhil.cineworlddigital.CheckoutActivity;
 import com.aadhil.cineworlddigital.R;
 import com.aadhil.cineworlddigital.model.TableMargin;
+import com.aadhil.cineworlddigital.service.ActivityNavigator;
 
 public class SelectSeat extends Fragment {
     public SelectSeat() {}
@@ -36,6 +37,10 @@ public class SelectSeat extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
 
+        // Get activity navigator
+        ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(),
+                getActivity().findViewById(R.id.parentLayoutCheckout));
+
         // Load seats
         loadSeatView(fragment);
 
@@ -43,9 +48,14 @@ public class SelectSeat extends Fragment {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CheckoutActivity activity = (CheckoutActivity) getActivity();
-                activity.getCheckoutFragmentManager()
-                        .setFragment(CheckoutActivity.CheckoutFragmentManager.FRAGMENT_CONFIRM_CHECKOUT);
+                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                    @Override
+                    public void redirect() {
+                        CheckoutActivity activity = (CheckoutActivity) getActivity();
+                        activity.getCheckoutFragmentManager()
+                                .setFragment(CheckoutActivity.CheckoutFragmentManager.FRAGMENT_CONFIRM_CHECKOUT);
+                    }
+                });
             }
         });
 
@@ -53,9 +63,14 @@ public class SelectSeat extends Fragment {
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CheckoutActivity activity = (CheckoutActivity) getActivity();
-                activity.getCheckoutFragmentManager()
-                        .setFragment(CheckoutActivity.CheckoutFragmentManager.FRAGMENT_SELECT_MOVIE);
+                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                    @Override
+                    public void redirect() {
+                        CheckoutActivity activity = (CheckoutActivity) getActivity();
+                        activity.getCheckoutFragmentManager()
+                                .setFragment(CheckoutActivity.CheckoutFragmentManager.FRAGMENT_SELECT_MOVIE);
+                    }
+                });
             }
         });
     }

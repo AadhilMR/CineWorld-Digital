@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.aadhil.cineworlddigital.MainActivity;
 import com.aadhil.cineworlddigital.R;
+import com.aadhil.cineworlddigital.service.ActivityNavigator;
 
 public class Register extends Fragment {
     public Register() {
@@ -34,10 +35,36 @@ public class Register extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
 
-        Button button = fragment.findViewById(R.id.button4);
-        button.setOnClickListener(new View.OnClickListener() {
+        // Get activity navigator
+        ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(),
+                getActivity().findViewById(R.id.parentLayoutMain));
+
+        // Check validity and register the user, and then redirect to login
+        Button button1 = fragment.findViewById(R.id.button3);
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /**
+                 * TEMP: temporary set redirection
+                 */
+                redirectToLogin(navigator);
+            }
+        });
+
+        // Change the view to login
+        Button button2 = fragment.findViewById(R.id.button4);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                redirectToLogin(navigator);
+            }
+        });
+    }
+
+    private void redirectToLogin(ActivityNavigator navigator) {
+        navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+            @Override
+            public void redirect() {
                 MainActivity mainActivity = (MainActivity) getActivity();
                 mainActivity.setFragment(MainActivity.LOGIN_FRAGMENT);
             }

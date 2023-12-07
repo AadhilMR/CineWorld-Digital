@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.aadhil.cineworlddigital.R;
 import com.aadhil.cineworlddigital.SettingsActivity;
+import com.aadhil.cineworlddigital.service.ActivityNavigator;
 
 public class SettingsUser extends Fragment {
     public SettingsUser() {}
@@ -32,13 +33,22 @@ public class SettingsUser extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
 
+        // Get activity navigator
+        ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(),
+                fragment.findViewById(R.id.parentLayoutSettings));
+
         // Go to SettingsHome Fragment
         RelativeLayout layoutClickable = fragment.findViewById(R.id.relativeLayout2);
         layoutClickable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SettingsActivity activity = (SettingsActivity) getActivity();
-                activity.setFragment(SettingsActivity.SETTINGS_HOME);
+                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                    @Override
+                    public void redirect() {
+                        SettingsActivity activity = (SettingsActivity) getActivity();
+                        activity.setFragment(SettingsActivity.SETTINGS_HOME);
+                    }
+                });
             }
         });
     }

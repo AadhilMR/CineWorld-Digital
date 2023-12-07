@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.aadhil.cineworlddigital.R;
 import com.aadhil.cineworlddigital.SettingsActivity;
+import com.aadhil.cineworlddigital.service.ActivityNavigator;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class SettingsHome extends Fragment {
@@ -37,13 +38,22 @@ public class SettingsHome extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
 
+        // Get activity navigator
+        ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(),
+                fragment.findViewById(R.id.parentLayoutSettings));
+
         // Go to Change User Credentials Fragment
         RelativeLayout layoutClickable = fragment.findViewById(R.id.relativeLayout);
         layoutClickable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SettingsActivity activity = (SettingsActivity) getActivity();
-                activity.setFragment(SettingsActivity.SETTINGS_USER);
+                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                    @Override
+                    public void redirect() {
+                        SettingsActivity activity = (SettingsActivity) getActivity();
+                        activity.setFragment(SettingsActivity.SETTINGS_USER);
+                    }
+                });
             }
         });
 
@@ -64,8 +74,13 @@ public class SettingsHome extends Fragment {
         layoutClickable3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SettingsActivity activity = (SettingsActivity) getActivity();
-                activity.setFragment(SettingsActivity.SETTINGS_AUTH);
+                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                    @Override
+                    public void redirect() {
+                        SettingsActivity activity = (SettingsActivity) getActivity();
+                        activity.setFragment(SettingsActivity.SETTINGS_AUTH);
+                    }
+                });
             }
         });
 

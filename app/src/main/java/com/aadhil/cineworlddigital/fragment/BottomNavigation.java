@@ -17,11 +17,14 @@ import com.aadhil.cineworlddigital.HomeActivity;
 import com.aadhil.cineworlddigital.R;
 import com.aadhil.cineworlddigital.SearchActivity;
 import com.aadhil.cineworlddigital.SettingsActivity;
+import com.aadhil.cineworlddigital.service.ActivityNavigator;
 
 public class BottomNavigation extends Fragment {
     private static final String ACTIVITY_HOME = "com.aadhil.cineworlddigital.HomeActivity";
     private static final String ACTIVITY_SEARCH = "com.aadhil.cineworlddigital.SearchActivity";
     private static final String ACTIVITY_SETTINGS = "com.aadhil.cineworlddigital.SettingsActivity";
+
+    private static ViewGroup layout;
 
     public BottomNavigation() {
         // Required empty public constructor
@@ -41,37 +44,59 @@ public class BottomNavigation extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
 
+        // Highlight if current activity same to the button
         setSelectedIcon(fragment);
 
+        // Get activity navigator
+        ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(), BottomNavigation.layout);
+
+        // Redirect to Home Activity
         Button buttonHome = fragment.findViewById(R.id.button5);
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!getActivity().getClass().getName().equals(BottomNavigation.ACTIVITY_HOME)) {
-                    Intent intent = new Intent(fragment.getContext(), HomeActivity.class);
-                    startActivity(intent);
+                    navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                        @Override
+                        public void redirect() {
+                            Intent intent = new Intent(fragment.getContext(), HomeActivity.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
         });
 
+        // Redirect to Search Movie Activity
         Button buttonSearch = fragment.findViewById(R.id.button6);
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!getActivity().getClass().getName().equals(BottomNavigation.ACTIVITY_SEARCH)) {
-                    Intent intent = new Intent(fragment.getContext(), SearchActivity.class);
-                    startActivity(intent);
+                    navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                        @Override
+                        public void redirect() {
+                            Intent intent = new Intent(fragment.getContext(), SearchActivity.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
         });
 
+        // Redirect to Settings Activity
         Button buttonSetting = fragment.findViewById(R.id.button7);
         buttonSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!getActivity().getClass().getName().equals(BottomNavigation.ACTIVITY_SETTINGS)) {
-                    Intent intent = new Intent(fragment.getContext(), SettingsActivity.class);
-                    startActivity(intent);
+                    navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                        @Override
+                        public void redirect() {
+                            Intent intent = new Intent(fragment.getContext(), SettingsActivity.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
         });
@@ -85,7 +110,10 @@ public class BottomNavigation extends Fragment {
      * @param containerViewId denotes fragment container resource id
      */
     public static void setNavigationBar(@NonNull FragmentManager fragmentManager,
-                                 @IdRes int containerViewId) {
+                                 @IdRes int containerViewId, ViewGroup layout) {
+
+        BottomNavigation.layout = layout;
+
         fragmentManager
                 .beginTransaction()
                 .add(containerViewId, BottomNavigation.class, null)

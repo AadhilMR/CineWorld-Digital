@@ -30,10 +30,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         // Set App Bar
-        AppBar.setAppBar(getSupportFragmentManager(), R.id.fragmentContainerView3);
+        AppBar.setAppBar(getSupportFragmentManager(), R.id.fragmentContainerView3,
+                findViewById(R.id.parentLayoutHome));
 
         // Set Bottom Navigation
-        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView2);
+        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView2,
+                findViewById(R.id.parentLayoutHome));
 
         // Set Image Slider
         setupImageSlider();

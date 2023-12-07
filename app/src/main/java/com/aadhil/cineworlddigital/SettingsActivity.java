@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.aadhil.cineworlddigital.fragment.AppBar;
+import com.aadhil.cineworlddigital.fragment.BottomNavigation;
 import com.aadhil.cineworlddigital.fragment.SettingsAuth;
 import com.aadhil.cineworlddigital.fragment.SettingsHome;
 import com.aadhil.cineworlddigital.fragment.SettingsUser;
@@ -22,6 +24,14 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        // Set App Bar
+        AppBar.setAppBar(getSupportFragmentManager(), R.id.fragmentContainerView11,
+                findViewById(R.id.parentLayoutSettings));
+
+        // Set Bottom Navigation
+        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView12,
+                findViewById(R.id.parentLayoutSettings));
 
         // Set fragment services
         setFragmentService();
