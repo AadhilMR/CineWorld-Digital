@@ -31,8 +31,7 @@ public class SingleMovieActivity extends AppCompatActivity {
                 findViewById(R.id.parentLayoutSingleMovie));
 
         // Set Bottom Navigation
-        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView7,
-                findViewById(R.id.parentLayoutSingleMovie));
+        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView7);
 
         // Load trailer
         String uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";

@@ -27,8 +27,7 @@ public class FindUsActivity extends AppCompatActivity implements OnMapReadyCallb
                 findViewById(R.id.parentLayoutFindus));
 
         // Set Bottom Navigation
-        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView15,
-                findViewById(R.id.parentLayoutFindus));
+        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView15);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

@@ -31,8 +31,7 @@ public class SearchActivity extends AppCompatActivity {
                 findViewById(R.id.parentLayoutSearch));
 
         // Set Bottom Navigation
-        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView5,
-                findViewById(R.id.parentLayoutSearch));
+        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView5);
 
         // Load Spinners
         loadShowTimes();

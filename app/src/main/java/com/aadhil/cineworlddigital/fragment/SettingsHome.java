@@ -47,13 +47,8 @@ public class SettingsHome extends Fragment {
         layoutClickable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
-                    @Override
-                    public void redirect() {
-                        SettingsActivity activity = (SettingsActivity) getActivity();
-                        activity.setFragment(SettingsActivity.SETTINGS_USER);
-                    }
-                });
+                SettingsActivity activity = (SettingsActivity) getActivity();
+                activity.setFragment(SettingsActivity.SETTINGS_USER);
             }
         });
 
@@ -74,13 +69,8 @@ public class SettingsHome extends Fragment {
         layoutClickable3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
-                    @Override
-                    public void redirect() {
-                        SettingsActivity activity = (SettingsActivity) getActivity();
-                        activity.setFragment(SettingsActivity.SETTINGS_AUTH);
-                    }
-                });
+                SettingsActivity activity = (SettingsActivity) getActivity();
+                activity.setFragment(SettingsActivity.SETTINGS_AUTH);
             }
         });
 
@@ -115,13 +105,11 @@ public class SettingsHome extends Fragment {
                             .getColorStateList(getContext(), R.color.primary_theme));
                     switch2.setTrackTintList(ContextCompat
                             .getColorStateList(getContext(), R.color.light_yellow));
-                    switch2.setText("Fingerprint Authentication is ON");
                 } else {
                     switch2.setThumbTintList(ContextCompat
                             .getColorStateList(getContext(), R.color.primary_background));
                     switch2.setTrackTintList(ContextCompat
                             .getColorStateList(getContext(), R.color.light_ash));
-                    switch2.setText("Fingerprint Authentication is OFF");
                 }
             }
         });

@@ -34,8 +34,7 @@ public class HomeActivity extends AppCompatActivity {
                 findViewById(R.id.parentLayoutHome));
 
         // Set Bottom Navigation
-        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView2,
-                findViewById(R.id.parentLayoutHome));
+        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView2);
 
         // Set Image Slider
         setupImageSlider();

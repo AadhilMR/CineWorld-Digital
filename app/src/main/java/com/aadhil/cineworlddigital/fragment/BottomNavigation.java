@@ -17,14 +17,11 @@ import com.aadhil.cineworlddigital.HomeActivity;
 import com.aadhil.cineworlddigital.R;
 import com.aadhil.cineworlddigital.SearchActivity;
 import com.aadhil.cineworlddigital.SettingsActivity;
-import com.aadhil.cineworlddigital.service.ActivityNavigator;
 
 public class BottomNavigation extends Fragment {
     private static final String ACTIVITY_HOME = "com.aadhil.cineworlddigital.HomeActivity";
     private static final String ACTIVITY_SEARCH = "com.aadhil.cineworlddigital.SearchActivity";
     private static final String ACTIVITY_SETTINGS = "com.aadhil.cineworlddigital.SettingsActivity";
-
-    private static ViewGroup layout;
 
     public BottomNavigation() {
         // Required empty public constructor
@@ -47,22 +44,14 @@ public class BottomNavigation extends Fragment {
         // Highlight if current activity same to the button
         setSelectedIcon(fragment);
 
-        // Get activity navigator
-        ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(), BottomNavigation.layout);
-
         // Redirect to Home Activity
         Button buttonHome = fragment.findViewById(R.id.button5);
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!getActivity().getClass().getName().equals(BottomNavigation.ACTIVITY_HOME)) {
-                    navigator.setRedirection(new ActivityNavigator.NavigationManager() {
-                        @Override
-                        public void redirect() {
-                            Intent intent = new Intent(fragment.getContext(), HomeActivity.class);
-                            startActivity(intent);
-                        }
-                    });
+                    Intent intent = new Intent(fragment.getContext(), HomeActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -73,13 +62,8 @@ public class BottomNavigation extends Fragment {
             @Override
             public void onClick(View view) {
                 if(!getActivity().getClass().getName().equals(BottomNavigation.ACTIVITY_SEARCH)) {
-                    navigator.setRedirection(new ActivityNavigator.NavigationManager() {
-                        @Override
-                        public void redirect() {
-                            Intent intent = new Intent(fragment.getContext(), SearchActivity.class);
-                            startActivity(intent);
-                        }
-                    });
+                    Intent intent = new Intent(fragment.getContext(), SearchActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -90,13 +74,8 @@ public class BottomNavigation extends Fragment {
             @Override
             public void onClick(View view) {
                 if(!getActivity().getClass().getName().equals(BottomNavigation.ACTIVITY_SETTINGS)) {
-                    navigator.setRedirection(new ActivityNavigator.NavigationManager() {
-                        @Override
-                        public void redirect() {
-                            Intent intent = new Intent(fragment.getContext(), SettingsActivity.class);
-                            startActivity(intent);
-                        }
-                    });
+                    Intent intent = new Intent(fragment.getContext(), SettingsActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -110,9 +89,7 @@ public class BottomNavigation extends Fragment {
      * @param containerViewId denotes fragment container resource id
      */
     public static void setNavigationBar(@NonNull FragmentManager fragmentManager,
-                                 @IdRes int containerViewId, ViewGroup layout) {
-
-        BottomNavigation.layout = layout;
+                                 @IdRes int containerViewId) {
 
         fragmentManager
                 .beginTransaction()

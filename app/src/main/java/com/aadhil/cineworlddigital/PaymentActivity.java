@@ -20,8 +20,7 @@ public class PaymentActivity extends AppCompatActivity {
                 findViewById(R.id.parentLayoutPayment));
 
         // Set Bottom Navigation
-        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView17,
-                findViewById(R.id.parentLayoutPayment));
+        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView17);
 
         // By Default, set the PayNow fragment
         getSupportFragmentManager()

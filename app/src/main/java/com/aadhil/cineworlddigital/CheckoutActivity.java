@@ -26,8 +26,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 findViewById(R.id.parentLayoutCheckout));
 
         // Set Bottom Navigation
-        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView9,
-                findViewById(R.id.parentLayoutCheckout));
+        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView9);
 
         // By default, set the 'SelectMovie' fragment
         getCheckoutFragmentManager().setFragment(CheckoutFragmentManager.FRAGMENT_SELECT_MOVIE);

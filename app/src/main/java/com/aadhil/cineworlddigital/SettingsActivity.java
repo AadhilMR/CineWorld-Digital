@@ -30,8 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
                 findViewById(R.id.parentLayoutSettings));
 
         // Set Bottom Navigation
-        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView12,
-                findViewById(R.id.parentLayoutSettings));
+        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView12);
 
         // Set fragment services
         setFragmentService();
