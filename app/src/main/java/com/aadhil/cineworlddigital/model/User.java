@@ -1,7 +1,6 @@
 package com.aadhil.cineworlddigital.model;
 
 public class User {
-    private String id;
     private String fname;
     private String lname;
     private String mobile;
@@ -15,24 +14,14 @@ public class User {
         this.lname = lname;
         this.mobile = mobile;
         this.password = password;
-
     }
 
-    public User(String id, String fname, String lname, String mobile, String email, String password) {
-        this.id = id;
+    public User(String fname, String lname, String mobile, String email, String password) {
         this.fname = fname;
         this.lname = lname;
         this.mobile = mobile;
         this.email = email;
         this.password = password;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getFname() {

@@ -1,33 +1,38 @@
 package com.aadhil.cineworlddigital.model;
 
+import android.net.Uri;
+
 public class UpcomingMovie {
-    private int id;
+    private Uri imageId;
     private String movieName;
     private String releaseDate;
 
     public UpcomingMovie() {}
 
-    public int getId() {
-        return id;
+    public Uri getImageId() {
+        return imageId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public UpcomingMovie setImageId(Uri imageId) {
+        this.imageId = imageId;
+        return this;
     }
 
     public String getMovieName() {
         return movieName;
     }
 
-    public void setMovieName(String movieName) {
+    public UpcomingMovie setMovieName(String movieName) {
         this.movieName = movieName;
+        return this;
     }
 
     public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public UpcomingMovie setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+        return this;
     }
 }

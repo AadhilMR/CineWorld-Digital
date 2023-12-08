@@ -21,6 +21,7 @@ import com.aadhil.cineworlddigital.service.ActivityNavigator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -79,6 +80,8 @@ public class Login extends Fragment {
                             if(task.isSuccessful() && !task.getResult().isEmpty()) {
                                 for(DocumentSnapshot snapshot : task.getResult().getDocuments()) {
                                     MainActivity.currentUser = snapshot.toObject(User.class);
+                                    FirebaseAuth.getInstance().signInAnonymously();
+
                                     navigator.setRedirection(new ActivityNavigator.NavigationManager() {
                                         @Override
                                         public void redirect() {

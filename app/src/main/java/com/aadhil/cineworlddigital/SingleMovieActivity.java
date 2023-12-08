@@ -24,39 +24,46 @@ public class SingleMovieActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_movie);
 
-        // Set App Bar
-        AppBar.setAppBar(getSupportFragmentManager(), R.id.fragmentContainerView6,
-                findViewById(R.id.parentLayoutSingleMovie));
+        if(getIntent() == null || !getIntent().hasExtra("movieId")) {
+            // No movie data is received
+            Intent i = new Intent(this, HomeActivity.class);
+            startActivity(i);
+        } else {
+            setContentView(R.layout.activity_single_movie);
 
-        // Set Bottom Navigation
-        BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView7);
+            // Set App Bar
+            AppBar.setAppBar(getSupportFragmentManager(), R.id.fragmentContainerView6,
+                    findViewById(R.id.parentLayoutSingleMovie));
 
-        // Load trailer
-        String uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-        loadTrailer(uri);
+            // Set Bottom Navigation
+            BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView7);
 
-        // Load Show Times
-        loadShowTimes("10.30AM", "7.15PM");
+            // Load trailer
+            String uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+            loadTrailer(uri);
 
-        // Go to Checkout
-        Button button = findViewById(R.id.button8);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityNavigator navigator = ActivityNavigator.getNavigator(SingleMovieActivity.this,
-                        findViewById(R.id.parentLayoutSingleMovie));
+            // Load Show Times
+            loadShowTimes("10.30AM", "7.15PM");
 
-                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
-                    @Override
-                    public void redirect() {
-                        Intent i = new Intent(SingleMovieActivity.this, CheckoutActivity.class);
-                        startActivity(i);
-                    }
-                });
-            }
-        });
+            // Go to Checkout
+            Button button = findViewById(R.id.button8);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ActivityNavigator navigator = ActivityNavigator.getNavigator(SingleMovieActivity.this,
+                            findViewById(R.id.parentLayoutSingleMovie));
+
+                    navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                        @Override
+                        public void redirect() {
+                            Intent i = new Intent(SingleMovieActivity.this, CheckoutActivity.class);
+                            startActivity(i);
+                        }
+                    });
+                }
+            });
+        }
     }
 
     private void loadTrailer(String stringUri) {

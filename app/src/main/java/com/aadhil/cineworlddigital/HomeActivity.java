@@ -20,9 +20,14 @@ import com.aadhil.cineworlddigital.fragment.BottomNavigation;
 import com.aadhil.cineworlddigital.model.CurrentMovie;
 import com.aadhil.cineworlddigital.model.SliderImage;
 import com.aadhil.cineworlddigital.model.UpcomingMovie;
+import com.aadhil.cineworlddigital.service.ActivityNavigator;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
@@ -49,20 +54,10 @@ public class HomeActivity extends AppCompatActivity {
         // Set Bottom Navigation
         BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView2);
 
-        // Set Image Slider
+        // Set Image Slider, Current Movies & Upcoming Movies
         setupImageSlider();
-
-        // TEMP: Fake ArrayList to pass to the adapters
-        ArrayList<CurrentMovie> datalist1 = new ArrayList<>();
-        ArrayList<UpcomingMovie> datalist2 = new ArrayList<>();
-
-        // Set current movies to recycler view
-        setMoviesToRecyclerView(R.id.recyclerView)
-                .setAdapter(new CurrentMovieAdapter(HomeActivity.this, datalist1).getAdapter());
-
-        // Set upcoming movies to recycler
-        setMoviesToRecyclerView(R.id.recyclerView2)
-                .setAdapter(new UpcomingMovieAdapter(HomeActivity.this, datalist2).getAdapter());
+        setCurrentMovies();
+        setUpcomingMovies();
 
     }
 
@@ -129,5 +124,102 @@ public class HomeActivity extends AppCompatActivity {
         };
 
         handler.postDelayed(runnable, 8000);
+    }
+
+    private String getDurationHMFormat(int durationAsInt) {
+        int hour = durationAsInt/60;
+        int mins = durationAsInt%60;
+        String durationInHMFormat = hour + "h " + mins + "m";
+        return durationInHMFormat;
+    }
+
+    private void setCurrentMovies() {
+        ActivityNavigator navigator = ActivityNavigator.getNavigator(this, findViewById(R.id.parentLayoutHome));
+        ArrayList<CurrentMovie> datalist = new ArrayList<>();
+
+        RecyclerView.Adapter adapter = new CurrentMovieAdapter(HomeActivity.this, datalist, navigator).getAdapter();
+
+        // Set current movies to recycler view
+        setMoviesToRecyclerView(R.id.recyclerView)
+                .setAdapter(adapter);
+
+        // Get movies from Firestore
+        db.collection("movies").whereEqualTo("current", true).get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if(task.isSuccessful()) {
+                        for(DocumentSnapshot item : task.getResult().getDocuments()) {
+                            // Create new Current Movie
+                            CurrentMovie movie = new CurrentMovie();
+                            movie.setMovieName(item.get("name").toString())
+                                .setDuration(getDurationHMFormat(Integer.parseInt(item.get("duration").toString())))
+                                .setLanguage(item.get("language").toString());
+
+                            // Get Poster
+                            storage.getReference("movie-image/" + item.get("imageId"))
+                                .getDownloadUrl()
+                                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        movie.setImageId(uri);
+                                        datalist.add(movie);
+                                        // Update adapter
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                });
+                        }
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e(HomeActivity.this.getClass().getSimpleName(), e.getMessage());
+                }
+            });
+    }
+
+    private void setUpcomingMovies() {
+        ArrayList<UpcomingMovie> datalist = new ArrayList<>();
+
+        RecyclerView.Adapter adapter = new UpcomingMovieAdapter(HomeActivity.this, datalist).getAdapter();
+
+        // Set current movies to recycler view
+        setMoviesToRecyclerView(R.id.recyclerView2)
+                .setAdapter(adapter);
+
+        // Get movies from Firestore
+        db.collection("movies").whereEqualTo("current", false).get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if(task.isSuccessful()) {
+                        for(DocumentSnapshot item : task.getResult().getDocuments()) {
+                            // Create new Current Movie
+                            UpcomingMovie movie = new UpcomingMovie();
+                            movie.setMovieName(item.get("name").toString())
+                                            .setReleaseDate("Release on " + item.get("releaseDate"));
+
+                            // Get Poster
+                            storage.getReference("movie-image/" + item.get("imageId"))
+                                .getDownloadUrl()
+                                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        movie.setImageId(uri);
+                                        datalist.add(movie);
+                                        // Update adapter
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                });
+                        }
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e(HomeActivity.this.getClass().getSimpleName(), e.getMessage());
+                }
+            });
     }
 }

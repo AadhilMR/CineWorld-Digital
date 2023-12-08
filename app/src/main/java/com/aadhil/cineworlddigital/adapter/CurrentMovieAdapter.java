@@ -1,5 +1,6 @@
 package com.aadhil.cineworlddigital.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aadhil.cineworlddigital.R;
+import com.aadhil.cineworlddigital.SingleMovieActivity;
 import com.aadhil.cineworlddigital.model.CurrentMovie;
+import com.aadhil.cineworlddigital.service.ActivityNavigator;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -17,9 +21,12 @@ public class CurrentMovieAdapter {
     final private AppCompatActivity activity;
     final private ArrayList<CurrentMovie> datalist;
 
-    public CurrentMovieAdapter(AppCompatActivity activity, ArrayList<CurrentMovie> datalist) {
+    final private ActivityNavigator navigator;
+
+    public CurrentMovieAdapter(AppCompatActivity activity, ArrayList<CurrentMovie> datalist, ActivityNavigator navigator) {
         this.activity = activity;
         this.datalist = datalist;
+        this.navigator = navigator;
     }
 
     public RecyclerView.Adapter getAdapter() {
@@ -38,10 +45,26 @@ public class CurrentMovieAdapter {
 
             @Override
             public void onBindViewHolder(@NonNull CurrentMovieViewHolder holder, int position) {
-                // holder.movieImage.setImageResource(R.drawable.something);
+                String id = datalist.get(position).getDocumentId();
+
+                Picasso.get().load(datalist.get(position).getImageId()).into(holder.movieImage);
                 holder.movieName.setText(datalist.get(position).getMovieName());
                 holder.duration.setText(datalist.get(position).getDuration());
                 holder.language.setText(datalist.get(position).getLanguage());
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                            @Override
+                            public void redirect() {
+                                Intent i = new Intent(activity, SingleMovieActivity.class);
+                                i.putExtra("movieId", id);
+                                activity.startActivity(i);
+                            }
+                        });
+                    }
+                });
             }
 
             @Override

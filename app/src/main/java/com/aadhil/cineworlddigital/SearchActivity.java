@@ -16,6 +16,7 @@ import com.aadhil.cineworlddigital.adapter.CurrentMovieAdapter;
 import com.aadhil.cineworlddigital.fragment.AppBar;
 import com.aadhil.cineworlddigital.fragment.BottomNavigation;
 import com.aadhil.cineworlddigital.model.CurrentMovie;
+import com.aadhil.cineworlddigital.service.ActivityNavigator;
 
 import java.util.ArrayList;
 
@@ -37,12 +38,14 @@ public class SearchActivity extends AppCompatActivity {
         loadShowTimes();
         loadLanguage();
 
+        ActivityNavigator navigator = ActivityNavigator.getNavigator(this, findViewById(R.id.parentLayoutSearch));
+
         // TEMP: Fake ArrayList to pass to the adapters
         ArrayList<CurrentMovie> datalist = new ArrayList<>();
 
         // Set current movies to recycler view
         setMoviesToRecyclerView(R.id.recyclerView3)
-                .setAdapter(new CurrentMovieAdapter(this, datalist).getAdapter());
+                .setAdapter(new CurrentMovieAdapter(this, datalist, navigator).getAdapter());
 
     }
 

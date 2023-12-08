@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aadhil.cineworlddigital.R;
 import com.aadhil.cineworlddigital.model.UpcomingMovie;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class UpcomingMovieAdapter {
 
             @Override
             public void onBindViewHolder(@NonNull UpcomingMovieViewHolder holder, int position) {
-                // holder.movieImage.setImageResource(R.drawable.something);
+                Picasso.get().load(datalist.get(position).getImageId()).into(holder.movieImage);
                 holder.movieName.setText(datalist.get(position).getMovieName());
                 holder.releaseDate.setText(datalist.get(position).getReleaseDate());
             }
