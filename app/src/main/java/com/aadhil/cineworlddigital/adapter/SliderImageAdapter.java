@@ -11,6 +11,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.aadhil.cineworlddigital.R;
 import com.aadhil.cineworlddigital.model.SliderImage;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,9 @@ public class SliderImageAdapter extends PagerAdapter {
         LayoutInflater inflater = LayoutInflater.from(activity);
         View view = inflater.inflate(R.layout.image_slider, container, false);
         ImageView imageView = view.findViewById(R.id.imageView4);
-        imageView.setImageResource(images.get(position).getImageResId());
+
+        Picasso.get().load(images.get(position).getImageUri()).into(imageView);
+
         container.addView(view);
         return view;
     }

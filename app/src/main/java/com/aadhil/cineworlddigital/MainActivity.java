@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 
 import com.aadhil.cineworlddigital.fragment.Login;
 import com.aadhil.cineworlddigital.fragment.Register;
+import com.aadhil.cineworlddigital.model.User;
 
 import java.util.concurrent.Executor;
 
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int LOGIN_FRAGMENT = 1;
     public static final int REGISTER_FRAGMENT = 2;
+
+    public static User currentUser = null;
 
     // Biometric
     BiometricPrompt biometricPrompt;
@@ -36,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
         switch (biometricManager.canAuthenticate(
                 BiometricManager.Authenticators.BIOMETRIC_STRONG
                         | BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
-            case BiometricManager.BIOMETRIC_SUCCESS:
-                Toast.makeText(this, "OK", Toast.LENGTH_LONG).show();
-                break;
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
                 Toast.makeText(this, "No Biometric Hardware", Toast.LENGTH_LONG).show();
                 break;
@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
                 Toast.makeText(this, "No fingerprint present", Toast.LENGTH_LONG).show();
-            default:
-                System.out.println("No Way");
                 break;
         }
 
@@ -74,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CineWorld Digital")
-                .setDescription("Use fingerpritn to login.").setDeviceCredentialAllowed(true)
+        promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("CineWorld Digital")
+                .setDescription("Use fingerprint to login.")
+                .setNegativeButtonText("Cancel")
                 .build();
 
         // biometricPrompt.authenticate(promptInfo);

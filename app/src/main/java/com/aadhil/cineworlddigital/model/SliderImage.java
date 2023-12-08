@@ -1,13 +1,15 @@
 package com.aadhil.cineworlddigital.model;
 
-public class SliderImage {
-    final private int imageResId;
+import android.net.Uri;
 
-    public SliderImage(int imageResId) {
-        this.imageResId = imageResId;
+public class SliderImage {
+    private final Uri uri;
+
+    public SliderImage(Uri uri) {
+        this.uri = uri;
     }
 
-    public int getImageResId() {
-        return imageResId;
+    public Uri getImageUri() {
+        return uri;
     }
 }

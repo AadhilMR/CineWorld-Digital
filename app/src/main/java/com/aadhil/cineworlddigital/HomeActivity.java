@@ -1,9 +1,12 @@
 package com.aadhil.cineworlddigital;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,12 +20,22 @@ import com.aadhil.cineworlddigital.fragment.BottomNavigation;
 import com.aadhil.cineworlddigital.model.CurrentMovie;
 import com.aadhil.cineworlddigital.model.SliderImage;
 import com.aadhil.cineworlddigital.model.UpcomingMovie;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class HomeActivity extends AppCompatActivity {
     private int currentPage = 0;
     private final Handler handler = new Handler();
+
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseStorage storage = FirebaseStorage.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +75,46 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setupImageSlider() {
-        ArrayList<SliderImage> images = new ArrayList<>();
-        images.add(new SliderImage(R.drawable.ic_home));
-        images.add(new SliderImage(R.drawable.ic_menu));
-        images.add(new SliderImage(R.drawable.ic_logout));
+        storage.getReference("/slider-image/")
+            .listAll()
+            .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                @Override
+                public void onSuccess(ListResult listResult) {
 
+                    // Image list
+                    ArrayList<SliderImage> images = new ArrayList<>();
+
+                    int totalImages = listResult.getItems().size();
+                    AtomicInteger loadedImagesCount = new AtomicInteger(0);
+
+                    for(StorageReference image : listResult.getItems()) {
+                        image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                try {
+                                    images.add(new SliderImage(uri));
+
+                                    if(loadedImagesCount.incrementAndGet() == totalImages) {
+                                        showImageSlider(images);
+                                    }
+                                } catch (Exception e) {
+                                    Log.e(HomeActivity.this.getClass().getSimpleName(), e.getMessage());
+                                }
+                            }
+                        });
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e(HomeActivity.this.getClass().getSimpleName(), e.getMessage());
+                }
+            });
+    }
+
+    private void showImageSlider(ArrayList<SliderImage> images) {
         ViewPager viewPager = findViewById(R.id.viewPager);
-        SliderImageAdapter imageAdapter = new SliderImageAdapter(this, images);
+        SliderImageAdapter imageAdapter = new SliderImageAdapter(HomeActivity.this, images);
         viewPager.setAdapter(imageAdapter);
 
         final Runnable runnable = new Runnable() {
