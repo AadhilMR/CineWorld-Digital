@@ -152,7 +152,8 @@ public class HomeActivity extends AppCompatActivity {
                         for(DocumentSnapshot item : task.getResult().getDocuments()) {
                             // Create new Current Movie
                             CurrentMovie movie = new CurrentMovie();
-                            movie.setMovieName(item.get("name").toString())
+                            movie.setDocumentId(item.getId())
+                                .setMovieName(item.get("name").toString())
                                 .setDuration(getDurationHMFormat(Integer.parseInt(item.get("duration").toString())))
                                 .setLanguage(item.get("language").toString());
 

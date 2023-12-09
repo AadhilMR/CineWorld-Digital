@@ -1,6 +1,8 @@
 package com.aadhil.cineworlddigital.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,6 +83,19 @@ public class Login extends Fragment {
                                 for(DocumentSnapshot snapshot : task.getResult().getDocuments()) {
                                     MainActivity.currentUser = snapshot.toObject(User.class);
                                     FirebaseAuth.getInstance().signInAnonymously();
+
+                                    // Add user details to sharedPreferences
+                                    SharedPreferences preferences = getActivity()
+                                            .getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = preferences.edit();
+
+                                    editor.putString("first_name", MainActivity.currentUser.getFname());
+                                    editor.putString("last_name", MainActivity.currentUser.getLname());
+                                    editor.putString("mobile", MainActivity.currentUser.getMobile());
+                                    editor.putString("email", MainActivity.currentUser.getEmail());
+                                    editor.putString("password", MainActivity.currentUser.getPassword());
+                                    editor.putLong("lastSigned", System.currentTimeMillis());
+                                    editor.apply();
 
                                     navigator.setRedirection(new ActivityNavigator.NavigationManager() {
                                         @Override

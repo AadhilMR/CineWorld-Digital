@@ -67,9 +67,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void loadLanguage() {
-        /**
-         * TEMP: temporary spinner items
-         */
         String[] spinnerItems = {"Language [ALL]", "English", "Hindi", "Sinhala", "Tamil"};
         Spinner spinner = findViewById(R.id.spinner2);
         loadSpinnerItem(spinner, spinnerItems);
