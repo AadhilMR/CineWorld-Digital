@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/khand"
                     android:text="@string/running_time"
-                    android:textColor="@color/primary_foreground"
+                    android:textColor="@color/light_ash"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/khand"
                     android:text="@string/movie_language"
-                    android:textColor="@color/primary_foreground"
+                    android:textColor="@color/light_ash"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -101,7 +101,7 @@
                     android:fontFamily="@font/khand"
                     android:paddingRight="5dp"
                     android:text="@string/released_on"
-                    android:textColor="@color/primary_foreground"
+                    android:textColor="@color/light_ash"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/khand"
                     android:text="YYYY-MM-DD"
-                    android:textColor="@color/primary_foreground"
+                    android:textColor="@color/light_ash"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView25"
@@ -123,10 +123,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="230dp">
+
+                <WebView
+                    android:id="@+id/webView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/primary_background"
+                    android:padding="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <VideoView
                 android:id="@+id/videoView"
                 android:layout_width="match_parent"
-                android:layout_height="230dp" />
+                android:layout_height="230dp"
+                android:visibility="gone" />
 
             <Space
                 android:layout_width="match_parent"
@@ -137,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/khand"
-                android:text="@string/desc"
+                android:text="Movie Description"
                 android:textAlignment="viewStart"
                 android:textColor="@color/primary_foreground"
                 android:textSize="14sp" />

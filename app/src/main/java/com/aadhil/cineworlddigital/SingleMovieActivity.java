@@ -1,16 +1,17 @@
 package com.aadhil.cineworlddigital;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -18,6 +19,14 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import com.aadhil.cineworlddigital.fragment.AppBar;
 import com.aadhil.cineworlddigital.fragment.BottomNavigation;
 import com.aadhil.cineworlddigital.service.ActivityNavigator;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
 
 public class SingleMovieActivity extends AppCompatActivity {
 
@@ -39,12 +48,7 @@ public class SingleMovieActivity extends AppCompatActivity {
             // Set Bottom Navigation
             BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView7);
 
-            // Load trailer
-            String uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-            loadTrailer(uri);
-
-            // Load Show Times
-            loadShowTimes("10.30AM", "7.15PM");
+            getMovieDetails(getIntent().getStringExtra("movieId"));
 
             // Go to Checkout
             Button button = findViewById(R.id.button8);
@@ -66,13 +70,19 @@ public class SingleMovieActivity extends AppCompatActivity {
         }
     }
 
-    private void loadTrailer(String stringUri) {
-        VideoView videoView = findViewById(R.id.videoView);
-        Uri uri = Uri.parse(stringUri);
-        videoView.setVideoURI(uri);
-        MediaController mediaController = new MediaController(this);
-        videoView.setMediaController(mediaController);
-        videoView.start();
+    private void loadTrailer(String stringUrl, String title) {
+        WebView webview = findViewById(R.id.webView);
+        String video = "<html style=\"padding: 0; margin: 0;\"><body style=\"padding: 0; margin: 0; top: 0; left: 0;\"><iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/"+ stringUrl +"\" title=\""+ title +"\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe></body></html>";
+        webview.loadData(video, "text/html", "utf-8");
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.setWebChromeClient(new WebChromeClient());
+
+        // VideoView videoView = findViewById(R.id.videoView);
+        // Uri uri = Uri.parse(stringUri);
+        // videoView.setVideoURI(uri);
+        // MediaController mediaController = new MediaController(this);
+        // videoView.setMediaController(mediaController);
+        // videoView.start();
     }
 
     private void loadShowTimes(String... showTimes) {
@@ -110,5 +120,81 @@ public class SingleMovieActivity extends AppCompatActivity {
         constraintSet.connect(viewId, ConstraintSet.TOP, R.id.constraintLayout, ConstraintSet.TOP);
         constraintSet.applyTo(layout);
         return viewId;
+    }
+
+    private String getDurationHMFormat(int durationAsInt) {
+        int hour = durationAsInt/60;
+        int mins = durationAsInt%60;
+        return  hour + "h " + mins + "m";
+    }
+
+    private void getMovieDetails(String docId) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        HashMap<String, String> map = new HashMap<>();
+
+        db.collection("movies").document(docId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot item = task.getResult();
+                map.put("name", item.get("name").toString());
+                map.put("duration", getDurationHMFormat(Integer.parseInt(item.get("duration").toString())));
+                map.put("language", item.get("language").toString());
+                map.put("releaseDate", item.get("releaseDate").toString());
+                map.put("videoId", item.get("videoId").toString());
+                map.put("desc", item.get("description").toString());
+
+                db.collection("movieDates").whereEqualTo("movieId", item.getId())
+                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()) {
+                                db.collection("/movieDates/"+ task.getResult().getDocuments().get(0).getId() +"/showTimes")
+                                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if(task.isSuccessful()) {
+                                                map.put("showTime", task.getResult().getDocuments().get(0).get("showtime").toString());
+
+                                                setMovieToUi(map);
+                                            }
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e(SingleMovieActivity.this.getClass().getSimpleName(), e.getMessage());
+                                        }
+                                    });
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e(SingleMovieActivity.this.getClass().getSimpleName(), e.getMessage());
+                        }
+                    });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e(SingleMovieActivity.this.getClass().getSimpleName(), e.getMessage());
+            }
+        });
+    }
+
+    private void setMovieToUi(HashMap<String, String> map) {
+        TextView movieName = findViewById(R.id.textView18);
+        TextView duration = findViewById(R.id.textView23);
+        TextView releaseDate = findViewById(R.id.textView26);
+        TextView language = findViewById(R.id.textView24);
+        TextView desc = findViewById(R.id.textView27);
+
+        movieName.setText(map.get("name"));
+        duration.setText(map.get("duration"));
+        releaseDate.setText(map.get("releaseDate"));
+        language.setText(map.get("language"));
+        desc.setText(map.get("desc"));
+
+        loadTrailer(map.get("videoId"), map.get("name"));
+        loadShowTimes(map.get("showTime"));
     }
 }

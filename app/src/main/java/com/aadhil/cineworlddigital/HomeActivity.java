@@ -58,7 +58,6 @@ public class HomeActivity extends AppCompatActivity {
         setupImageSlider();
         setCurrentMovies();
         setUpcomingMovies();
-
     }
 
     private RecyclerView setMoviesToRecyclerView(@IdRes int resId) {
@@ -129,8 +128,7 @@ public class HomeActivity extends AppCompatActivity {
     private String getDurationHMFormat(int durationAsInt) {
         int hour = durationAsInt/60;
         int mins = durationAsInt%60;
-        String durationInHMFormat = hour + "h " + mins + "m";
-        return durationInHMFormat;
+        return hour + "h " + mins + "m";
     }
 
     private void setCurrentMovies() {

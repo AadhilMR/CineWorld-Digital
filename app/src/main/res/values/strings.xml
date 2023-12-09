@@ -45,8 +45,6 @@
     <!-- Single Movie Activity -->
     <string name="released_on">Released On:</string>
     <string name="book_now">Book My Seat</string>
-    <!-- TEMP: remove this -->
-    <string name="desc">I am Aadhil Ahamed. I am 22 age years old. My favourite programming language is Java.</string>
 
     <!-- Checkout Activity -->
     <string name="text_pick_movie">Pick a movie&#8230;</string>

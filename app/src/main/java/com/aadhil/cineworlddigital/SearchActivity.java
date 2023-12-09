@@ -61,7 +61,7 @@ public class SearchActivity extends AppCompatActivity {
         /**
          * TEMP: temporary spinner items
          */
-        String[] spinnerItems = {"Show Time [ALL]", "10.30AM", "1.15PM", "4PM", "7.30PM", "11PM"};
+        String[] spinnerItems = {"Show Time [ALL]", "10.30AM", "1.15PM", "4PM", "7PM", "11PM"};
         Spinner spinner = findViewById(R.id.spinner);
         loadSpinnerItem(spinner, spinnerItems);
     }
