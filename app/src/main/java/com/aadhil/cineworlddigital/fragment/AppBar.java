@@ -73,12 +73,9 @@ public class AppBar extends Fragment {
      * @param fragment
      */
     private void setRedirector(Class activityClass, View fragment) {
-        System.out.println("OK here");
         navigator.setRedirection(new ActivityNavigator.NavigationManager() {
             @Override
             public void redirect() {
-                System.out.println(fragment.getContext());
-                System.out.println(activityClass);
                 Intent intent = new Intent(fragment.getContext(), activityClass);
                 startActivity(intent);
             }
@@ -123,9 +120,7 @@ public class AppBar extends Fragment {
         });
 
         map.put(R.id.logout, () -> {
-            /**
-             * TEMP: add logout function here
-             */
+            MainActivity.currentUser = null;
             setRedirector(MainActivity.class, fragment);
         });
 

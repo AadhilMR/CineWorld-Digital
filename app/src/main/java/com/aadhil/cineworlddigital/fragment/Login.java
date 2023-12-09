@@ -31,6 +31,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.regex.Pattern;
 
 public class Login extends Fragment {
+
+    ActivityNavigator navigator;
+
     public Login() {
         // Required empty public constructor  sign_in_button_reg  sign_in_button_reg
     }
@@ -51,9 +54,11 @@ public class Login extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
 
-        // Get activity navigator
-        ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(),
+        navigator = ActivityNavigator.getNavigator(getContext(),
                 getActivity().findViewById(R.id.parentLayoutMain));
+
+        SharedPreferences preferences = getActivity()
+                .getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
 
         // Check user validity and login
         Button button1 = fragment.findViewById(R.id.button);
@@ -84,18 +89,18 @@ public class Login extends Fragment {
                                     MainActivity.currentUser = snapshot.toObject(User.class);
                                     FirebaseAuth.getInstance().signInAnonymously();
 
-                                    // Add user details to sharedPreferences
-                                    SharedPreferences preferences = getActivity()
-                                            .getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = preferences.edit();
+                                    if(preferences.getString("mobile", null) == null) {
+                                        // Add user details to sharedPreferences
+                                        SharedPreferences.Editor editor = preferences.edit();
 
-                                    editor.putString("first_name", MainActivity.currentUser.getFname());
-                                    editor.putString("last_name", MainActivity.currentUser.getLname());
-                                    editor.putString("mobile", MainActivity.currentUser.getMobile());
-                                    editor.putString("email", MainActivity.currentUser.getEmail());
-                                    editor.putString("password", MainActivity.currentUser.getPassword());
-                                    editor.putLong("lastSigned", System.currentTimeMillis());
-                                    editor.apply();
+                                        editor.putString("first_name", MainActivity.currentUser.getFname());
+                                        editor.putString("last_name", MainActivity.currentUser.getLname());
+                                        editor.putString("mobile", MainActivity.currentUser.getMobile());
+                                        editor.putString("email", MainActivity.currentUser.getEmail());
+                                        editor.putString("password", MainActivity.currentUser.getPassword());
+                                        editor.putLong("lastSigned", System.currentTimeMillis());
+                                        editor.apply();
+                                    }
 
                                     navigator.setRedirection(new ActivityNavigator.NavigationManager() {
                                         @Override

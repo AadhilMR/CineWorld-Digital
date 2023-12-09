@@ -57,7 +57,11 @@ public class SplashActivity extends AppCompatActivity {
                     if(MainActivity.currentUser.getMobile() == null) {
                         i = new Intent(SplashActivity.this, MainActivity.class);
                     } else {
-                        i = new Intent(SplashActivity.this, HomeActivity.class);
+//                        SharedPreferences.Editor editor = preferences.edit();
+//                        editor.putLong("lastSigned", currentTimestamp);
+//                        editor.apply();
+//                        i = new Intent(SplashActivity.this, HomeActivity.class);
+                        i = new Intent(SplashActivity.this, MainActivity.class);
                     }
                 } else {
                     i = new Intent(SplashActivity.this, MainActivity.class);
