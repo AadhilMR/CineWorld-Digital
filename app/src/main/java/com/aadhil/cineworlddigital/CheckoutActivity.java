@@ -10,11 +10,14 @@ import com.aadhil.cineworlddigital.fragment.BottomNavigation;
 import com.aadhil.cineworlddigital.fragment.ConfirmCheckout;
 import com.aadhil.cineworlddigital.fragment.SelectMovie;
 import com.aadhil.cineworlddigital.fragment.SelectSeat;
+import com.aadhil.cineworlddigital.model.CheckoutInfo;
 
 import java.util.HashMap;
 
 public class CheckoutActivity extends AppCompatActivity {
     private CheckoutFragmentManager fragmentManager;
+
+    private CheckoutInfo checkoutInfo = new CheckoutInfo();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,10 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // By default, set the 'SelectMovie' fragment
         getCheckoutFragmentManager().setFragment(CheckoutFragmentManager.FRAGMENT_SELECT_MOVIE);
+    }
+
+    public CheckoutInfo getCheckoutInfo() {
+        return checkoutInfo;
     }
 
     public CheckoutFragmentManager getCheckoutFragmentManager() {

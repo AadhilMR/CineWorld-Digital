@@ -57,7 +57,7 @@ public class SearchActivity extends AppCompatActivity {
         BottomNavigation.setNavigationBar(getSupportFragmentManager(), R.id.fragmentContainerView5);
 
         // Load Spinners
-        loadShowTimes();
+        loadDates();
         loadLanguage();
 
         searchMovie("", SearchActivity.NO_KEYWORD);
@@ -78,7 +78,7 @@ public class SearchActivity extends AppCompatActivity {
         return recyclerView;
     }
 
-    private void loadShowTimes() {
+    private void loadDates() {
         final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd");
         final Calendar calendar = Calendar.getInstance();
 

@@ -72,6 +72,11 @@
     <string name="button_previous">Previous</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_card_payment">Card Payment</string>
+    <string name="morning_show">10.30AM</string>
+    <string name="noontime_show">1.15PM</string>
+    <string name="evening_show">4PAM</string>
+    <string name="night_show">7PM</string>
+    <string name="midnight_show">11PM</string>
 
     <!-- Settings Activity -->
     <string name="title_user_info">User Information</string>

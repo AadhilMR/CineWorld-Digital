@@ -7,6 +7,7 @@ public class CheckoutInfo {
     private String date;
     private String showTime;
     private ArrayList<String> seats;
+    private ArrayList<String> selectedSeats;
 
     public CheckoutInfo() {}
 
@@ -49,6 +50,15 @@ public class CheckoutInfo {
 
     public CheckoutInfo setSeats(ArrayList<String> seats) {
         this.seats = seats;
+        return this;
+    }
+
+    public ArrayList<String> getSelectedSeats() {
+        return selectedSeats;
+    }
+
+    public CheckoutInfo setSelectedSeats(ArrayList<String> selectedSeats) {
+        this.selectedSeats = selectedSeats;
         return this;
     }
 }

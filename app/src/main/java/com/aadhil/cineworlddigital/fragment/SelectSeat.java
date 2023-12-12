@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,8 +17,14 @@ import androidx.fragment.app.Fragment;
 
 import com.aadhil.cineworlddigital.CheckoutActivity;
 import com.aadhil.cineworlddigital.R;
+import com.aadhil.cineworlddigital.model.CheckoutInfo;
 import com.aadhil.cineworlddigital.model.TableMargin;
 import com.aadhil.cineworlddigital.service.ActivityNavigator;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class SelectSeat extends Fragment {
     public SelectSeat() {}
@@ -41,24 +49,35 @@ public class SelectSeat extends Fragment {
         ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(),
                 getActivity().findViewById(R.id.parentLayoutCheckout));
 
+        // Show Selected Movie Details
+        setMovieDetails(fragment);
+
         // Load seats
         loadSeatView(fragment);
 
+        // Go to Finalization
         Button buttonNext = fragment.findViewById(R.id.button19);
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigator.setRedirection(new ActivityNavigator.NavigationManager() {
-                    @Override
-                    public void redirect() {
-                        CheckoutActivity activity = (CheckoutActivity) getActivity();
-                        activity.getCheckoutFragmentManager()
-                                .setFragment(CheckoutActivity.CheckoutFragmentManager.FRAGMENT_CONFIRM_CHECKOUT);
-                    }
-                });
+                CheckoutActivity activity = (CheckoutActivity) getActivity();
+                CheckoutInfo checkoutInfo = activity.getCheckoutInfo();
+
+                if(checkoutInfo.getSelectedSeats() == null || checkoutInfo.getSelectedSeats().isEmpty()) {
+                    Toast.makeText(getContext(), "Select at least one seat", Toast.LENGTH_LONG).show();
+                } else {
+                    navigator.setRedirection(new ActivityNavigator.NavigationManager() {
+                        @Override
+                        public void redirect() {
+                            activity.getCheckoutFragmentManager()
+                                    .setFragment(CheckoutActivity.CheckoutFragmentManager.FRAGMENT_CONFIRM_CHECKOUT);
+                        }
+                    });
+                }
             }
         });
 
+        // Go to movie selection
         Button buttonPrev = fragment.findViewById(R.id.button20);
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,12 +86,39 @@ public class SelectSeat extends Fragment {
                     @Override
                     public void redirect() {
                         CheckoutActivity activity = (CheckoutActivity) getActivity();
+
+                        activity.getCheckoutInfo().setSelectedSeats(null);
+
                         activity.getCheckoutFragmentManager()
                                 .setFragment(CheckoutActivity.CheckoutFragmentManager.FRAGMENT_SELECT_MOVIE);
                     }
                 });
             }
         });
+    }
+
+    private void setMovieDetails(View fragment) {
+        TextView movieName = fragment.findViewById(R.id.textView37);
+        TextView showDateTime = fragment.findViewById(R.id.textView38);
+
+        CheckoutActivity activity = (CheckoutActivity) getActivity();
+        CheckoutInfo checkoutInfo = activity.getCheckoutInfo();
+
+        SimpleDateFormat sdfIn = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfOut = new SimpleDateFormat("E, dd MMM");
+
+        try {
+            Date date = sdfIn.parse(checkoutInfo.getDate());
+            String showDate = sdfOut.format(date);
+            String showTime = checkoutInfo.getShowTime();
+
+            // Set data
+            movieName.setText(checkoutInfo.getMovieName());
+            showDateTime.setText(showDate + " at " + showTime);
+
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void loadSeatView(View fragment) {
@@ -97,6 +143,12 @@ public class SelectSeat extends Fragment {
                 seatButton.setTag(seatId);
                 seatButton.setText(seatId);
 
+                CheckoutInfo checkoutInfo = ((CheckoutActivity) getActivity()).getCheckoutInfo();
+
+                if(checkoutInfo.getSeats() != null && checkoutInfo.getSeats().contains(seatId)) {
+                    seatButton.setBackgroundColor(getActivity().getColor(R.color.light_blue));
+                }
+
                 TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
 
                 TableMargin tableMargin = getMargins(row, seat);
@@ -113,7 +165,31 @@ public class SelectSeat extends Fragment {
                     @Override
                     public void onClick(View view) {
                         String selectedSeatId = (String) view.getTag();
-                        System.out.println(selectedSeatId);
+
+                        CheckoutInfo checkoutInfo = ((CheckoutActivity) getActivity()).getCheckoutInfo();
+
+                        if(checkoutInfo.getSelectedSeats() != null) {
+                            if(checkoutInfo.getSelectedSeats().contains(selectedSeatId)) {
+
+                                seatButton.setBackgroundColor(getActivity().getColor(R.color.transparent));
+
+                                ArrayList<String> selectedSeats = checkoutInfo.getSelectedSeats();
+                                selectedSeats.remove(selectedSeatId);
+                                checkoutInfo.setSelectedSeats(selectedSeats);
+                            } else {
+                                seatButton.setBackgroundColor(getActivity().getColor(R.color.light_yellow));
+
+                                ArrayList<String> selectedSeats = checkoutInfo.getSelectedSeats();
+                                selectedSeats.add(selectedSeatId);
+                                checkoutInfo.setSelectedSeats(selectedSeats);
+                            }
+                        } else {
+                            seatButton.setBackgroundColor(getActivity().getColor(R.color.light_yellow));
+
+                            ArrayList<String> selectedSeats = new ArrayList<>();
+                            selectedSeats.add(selectedSeatId);
+                            checkoutInfo.setSelectedSeats(selectedSeats);
+                        }
                     }
                 });
 
