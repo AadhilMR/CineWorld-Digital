@@ -52,7 +52,7 @@ public class AppBar extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
 
-        // Get activity navigator
+        // Set Activity Navigator
         navigator = ActivityNavigator.getNavigator(getContext(), AppBar.layout);
 
         ImageButton imageButton = fragment.findViewById(R.id.imageButton);

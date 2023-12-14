@@ -69,7 +69,7 @@ public class ActivityNavigator {
     public static ActivityNavigator getNavigator(Context context, ViewGroup layout) {
         if(navigator == null) {
             navigator = new ActivityNavigator(context, layout);
-        } else {
+        } else if(layout != null) {
             navigator.context = context;
             navigator.layout = layout;
         }
