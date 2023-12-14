@@ -259,7 +259,9 @@ public class SelectMovie extends Fragment {
                                         public void onClick(View v) {
                                             // Set checkoutInfo
                                             CheckoutActivity activity = (CheckoutActivity) getActivity();
-                                            activity.getCheckoutInfo().setMovieName(button.getText().toString());
+                                            activity.getCheckoutInfo()
+                                                    .setMovieName(button.getText().toString())
+                                                    .setMovieId(movieId);
 
                                             // Set selected button
                                             if(!button.equals(lastClickedMovieButton)) {

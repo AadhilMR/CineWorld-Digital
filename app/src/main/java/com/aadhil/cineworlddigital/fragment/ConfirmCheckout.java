@@ -44,7 +44,7 @@ public class ConfirmCheckout extends Fragment {
     public void onViewCreated(@NonNull View fragment, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragment, savedInstanceState);
         // Load checkout finalized data
-        loadDetails(fragment);
+        CheckoutInfo checkoutInfo = loadDetails(fragment);
 
         // Get activity navigator
         ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(),
@@ -65,6 +65,7 @@ public class ConfirmCheckout extends Fragment {
                         @Override
                         public void redirect() {
                             Intent i = new Intent(getContext(), PaymentActivity.class);
+                            i.putExtra("checkoutInfo", checkoutInfo);
                             startActivity(i);
                         }
                     });
@@ -89,7 +90,7 @@ public class ConfirmCheckout extends Fragment {
         });
     }
 
-    private void loadDetails(View fragment) {
+    private CheckoutInfo loadDetails(View fragment) {
         final int ticketPrice = 1200;
 
         CheckoutInfo checkoutInfo = ((CheckoutActivity) getActivity()).getCheckoutInfo();
@@ -101,8 +102,11 @@ public class ConfirmCheckout extends Fragment {
                 ? "N/A" : MainActivity.currentUser.getEmail();
         int ticketCount = checkoutInfo.getSelectedSeats().size();
         String selectedSeats = (ticketCount != 0) ? "" : "N/A";
-        String subTotal = ticketCount + " x (LKR " + ticketPrice + ") = LKR " + (ticketCount*ticketPrice);
-        String total = "LKR " + (ticketCount*ticketPrice);
+
+        int totalInt = ticketCount * ticketPrice;
+
+        String subTotal = ticketCount + " x (LKR " + ticketPrice + ") = LKR " + totalInt;
+        String total = "LKR " + totalInt;
 
         // Set date and time
         try {
@@ -121,7 +125,8 @@ public class ConfirmCheckout extends Fragment {
         for(String seat : checkoutInfo.getSelectedSeats()) {
             selectedSeats = selectedSeats + seat + ", ";
         }
-        selectedSeats.substring(0, (selectedSeats.length()-2));
+
+        selectedSeats = selectedSeats.substring(0, (selectedSeats.length()-2));
 
         TextView tvMovie = fragment.findViewById(R.id.textView46);
         tvMovie.setText(movieName);
@@ -146,5 +151,7 @@ public class ConfirmCheckout extends Fragment {
 
         TextView tvTotal = fragment.findViewById(R.id.textView62);
         tvTotal.setText(total);
+
+        return checkoutInfo.setPrice((double) totalInt);
     }
 }
