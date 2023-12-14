@@ -90,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
                 Toast.makeText(this, "No fingerprint present", Toast.LENGTH_LONG).show();
                 break;
+            case BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED:
+                Toast.makeText(this, "Require Security Updates", Toast.LENGTH_LONG).show();
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED:
+                Toast.makeText(this, "Unsupported Device/Version", Toast.LENGTH_LONG).show();
+                break;
         }
 
         Executor executor = ContextCompat.getMainExecutor(this);
@@ -108,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                         preferences.getString("fname", null),
                         preferences.getString("lname", null),
                         preferences.getString("mobile", null),
-                        preferences.getString("email", null)
+                        preferences.getString("password", null)
                 );
                 FirebaseAuth.getInstance().signInAnonymously();
 
