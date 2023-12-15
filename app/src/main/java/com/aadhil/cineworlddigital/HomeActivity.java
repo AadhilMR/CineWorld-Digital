@@ -1,5 +1,6 @@
 package com.aadhil.cineworlddigital;
 
+import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.util.Log;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -58,6 +60,9 @@ public class HomeActivity extends AppCompatActivity {
         setupImageSlider();
         setCurrentMovies();
         setUpcomingMovies();
+
+        // Request permission if not granted yet
+        requestPermission();
     }
 
     private RecyclerView setMoviesToRecyclerView(@IdRes int resId) {
@@ -220,5 +225,11 @@ public class HomeActivity extends AppCompatActivity {
                     Log.e(HomeActivity.this.getClass().getSimpleName(), e.getMessage());
                 }
             });
+    }
+
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this, new String[] {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        }, 1232);
     }
 }
