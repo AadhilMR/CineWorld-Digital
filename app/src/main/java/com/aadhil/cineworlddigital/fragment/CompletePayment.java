@@ -1,6 +1,10 @@
 package com.aadhil.cineworlddigital.fragment;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -22,6 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +49,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class CompletePayment extends Fragment {
+
+    private String channelId = "info";
+    private NotificationManager manager;
+
     public CompletePayment() {}
 
     @Override
@@ -61,6 +70,9 @@ public class CompletePayment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View fragmenet, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(fragmenet, savedInstanceState);
+
+        // Set Notification Manager and Notification Channel
+        setNotificationChannel();
 
         // Get activity navigator
         ActivityNavigator navigator = ActivityNavigator.getNavigator(getContext(),
@@ -144,13 +156,17 @@ public class CompletePayment extends Fragment {
 
     private void requestPermission() {
         ActivityCompat.requestPermissions(getActivity(), new String[] {
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.POST_NOTIFICATIONS
         }, 1232);
     }
 
     private void downloadTicketTo(File filePath) {
         if(convertXmlToPdf(filePath)) {
             Toast.makeText(getContext(), "The ticket is saved to your Downloads!", Toast.LENGTH_SHORT).show();
+
+            // Show notification
+            showNotification();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("Error While Downloading")
@@ -223,5 +239,28 @@ public class CompletePayment extends Fragment {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    private void setNotificationChannel() {
+        NotificationManager manager = (NotificationManager) getActivity()
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+
+        NotificationChannel channel = new NotificationChannel(channelId, "INFO", NotificationManager.IMPORTANCE_DEFAULT);
+        channel.enableVibration(true);
+        manager.createNotificationChannel(channel);
+        this.manager = manager;
+    }
+
+    private void showNotification() {
+        Notification notification = new NotificationCompat.Builder(getContext(), channelId)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentTitle("CineWorld Digital")
+                .setSubText("e-Ticket")
+                .setContentText("Your e-Ticket downloaded successfully to Downloads.")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Your e-Ticket downloaded successfully to Downloads."))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setColor(getActivity().getColor(R.color.primary_theme))
+                .build();
+        manager.notify(1, notification);
     }
 }

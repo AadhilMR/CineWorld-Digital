@@ -229,7 +229,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[] {
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.POST_NOTIFICATIONS
         }, 1232);
     }
 }
