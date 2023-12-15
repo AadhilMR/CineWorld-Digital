@@ -44,7 +44,8 @@
                 android:fontFamily="@font/khand"
                 android:text="@string/get_card"
                 android:textColor="@color/primary_theme"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <Space
                 android:layout_width="match_parent"

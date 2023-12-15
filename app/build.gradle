@@ -55,4 +55,8 @@ dependencies {
 
     // Picasso Image Processor
     implementation "com.squareup.picasso:picasso:2.8"
+
+    // QR Generator
+    implementation "com.github.androidmads:QRGenerator:1.0.1"
+
 }

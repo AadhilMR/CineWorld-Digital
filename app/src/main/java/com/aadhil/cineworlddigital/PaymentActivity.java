@@ -7,13 +7,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.aadhil.cineworlddigital.fragment.AppBar;
 import com.aadhil.cineworlddigital.fragment.BottomNavigation;
 import com.aadhil.cineworlddigital.fragment.PayNow;
+import com.aadhil.cineworlddigital.model.CheckoutInfo;
+import com.aadhil.cineworlddigital.model.Invoice;
 
 public class PaymentActivity extends AppCompatActivity {
+    public static CheckoutInfo checkoutInfo = null;
+    public static Invoice invoice = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
+        checkoutInfo = (CheckoutInfo) getIntent().getSerializableExtra("checkoutInfo");
 
         // Set App Bar
         AppBar.setAppBar(getSupportFragmentManager(), R.id.fragmentContainerView16,

@@ -9,41 +9,84 @@
     android:paddingEnd="10dp"
     tools:context=".fragment.CompletePayment">
 
-    <Space
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name">
 
-    <TextView
-        android:id="@+id/textView98"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/khand"
-        android:text="@string/payment_verified"
-        android:textAlignment="center"
-        android:textColor="@color/color_success"
-        android:textSize="24sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_check_circle" />
+            <TextView
+                android:id="@+id/textView98"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/khand"
+                android:text="@string/payment_verified"
+                android:textAlignment="center"
+                android:textColor="@color/color_success"
+                android:textSize="24sp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
-    <Button
-        android:id="@+id/button24"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/primary_theme"
-        android:fontFamily="@font/khand"
-        android:text="@string/print_invoice"
-        android:textColor="@color/primary_foreground"
-        android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_check_circle" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:id="@+id/textView108"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/khand"
+                android:text="@string/ticket_printing_warning"
+                android:textAlignment="center"
+                android:textColor="@color/primary_foreground"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <Button
+                android:id="@+id/button24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/primary_theme"
+                android:fontFamily="@font/khand"
+                android:text="@string/print_invoice"
+                android:textColor="@color/primary_foreground"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_foreground" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

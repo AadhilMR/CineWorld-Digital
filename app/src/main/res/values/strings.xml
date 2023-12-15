@@ -112,6 +112,18 @@
     <string name="get_card">Use Saved Card</string>
     <string name="pay_now">Pay Now</string>
     <string name="payment_verified">Your Payment is Verified</string>
-    <string name="print_invoice">Get Ticket</string>
+    <string name="ticket_printing_warning">You cannot get tickets once you leave this page. Download Now!</string>
+    <string name="print_invoice">Download Ticket</string>
+    <string name="ticket_seat_no">Seat No</string>
+    <string name="ticket_date">Date</string>
+    <string name="ticket_showtime">Showtime</string>
+    <string name="ticket_total">Total Rs.</string>
+    <string name="ticket_issued_datetime">Issued Date &amp; Time</string>
+    <string name="ticket_ref_no">Ref No</string>
+    <string name="ticket_rule_1">No Outside Food/Beverage</string>
+    <string name="ticket_rule_2">No Refund/Exchange</string>
+    <string name="ticket_rule_3">Valid only for the issued cinema</string>
+    <string name="ticket_rule_4">Ticket price includes government taxes</string>
+    <string name="ticket_compliment">Thank you! Enjoy your show!</string>
 
 </resources>
