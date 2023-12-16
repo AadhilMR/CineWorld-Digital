@@ -111,9 +111,10 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
                 MainActivity.currentUser = new User(
-                        preferences.getString("fname", null),
-                        preferences.getString("lname", null),
+                        preferences.getString("first_name", null),
+                        preferences.getString("last_name", null),
                         preferences.getString("mobile", null),
+                        preferences.getString("email", null),
                         preferences.getString("password", null)
                 );
                 FirebaseAuth.getInstance().signInAnonymously();
